@@ -141,6 +141,8 @@ on enable-low-power
     write /sys/kernel/fast_charge/screen_on_current_limit 0
     write /sys/kernel/fast_charge/use_mtp_during_fast_charge 1
 
+    write /sys/devices/platform/msm_sdcc.3/idle_timeout 10
+
 on boot
     trigger enable-low-power
 
