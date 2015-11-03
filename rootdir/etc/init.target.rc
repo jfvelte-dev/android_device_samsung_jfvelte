@@ -279,11 +279,6 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     user camera
     group camera system inet input graphics net_bt_stack
 
-service thermal-engine /system/bin/thermal-engine
-    class main
-    user root
-    group root
-
 service mpdecision /system/bin/mpdecision --avg_comp
     user root
     group root system
@@ -319,10 +314,6 @@ service time_daemon /system/bin/time_daemon
     class late_start
     user root
     group root
-
-# SISO-ANDR-PERF :: START Changing scheduler to row after boot complete
-on property:sys.boot_completed=1
-    write /sys/block/mmcblk0/queue/scheduler row
 
 # insthk
 service insthk /system/bin/insthk

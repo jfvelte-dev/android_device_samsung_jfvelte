@@ -25,47 +25,20 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+import init.qcom.power.rc
 import init.qcom.usb.rc
 import init.target.rc
 import init.carrier.rc
 
-on early-init
-    write /sys/block/mmcblk0/queue/scheduler noop
-
-    # Increase max readahead size to 512 KB
-    write /sys/block/mmcblk0/queue/read_ahead_kb 512
-    write /sys/block/mmcblk1/queue/read_ahead_kb 512
-
 on init
+    export LD_PRELOAD "/system/lib/libsamsung_symbols.so"
+
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
-    mkdir /mnt/shell/emulated 0700 shell shell
-    mkdir /storage 0550 system sdcard_r
-    mkdir /storage/emulated 0555 root root
-
-    #External storage directories
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
-
-    mkdir /storage/sdcard1 0700 root root
-    mkdir /storage/usbdisk 0700 root root
-
-    export EXTERNAL_STORAGE /storage/emulated/legacy
-    export SECONDARY_STORAGE /storage/sdcard1:/storage/usbdisk
-    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
-    export EMULATED_STORAGE_TARGET /storage/emulated
-
     # Support legacy paths
-    symlink /storage/emulated/legacy /sdcard
-    symlink /storage/emulated/legacy /mnt/sdcard
-    symlink /storage/emulated/legacy /storage/sdcard0
-    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-    symlink /storage/sdcard1 /extSdCard
-    symlink /storage/sdcard1 /mnt/extSdCard
-    symlink /storage/sdcard1 /external_sd
-    symlink /storage/usbdisk /usbdisk
-    symlink /storage/usbdisk /mnt/usbdisk
+    symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -194,6 +167,10 @@ on boot
     write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
     chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
 
+    # Adaptive LMK
+    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 53059
+
 on post-fs
     chown system system /sys/block/mmcblk0/queue/scheduler
     chmod 0664 /sys/block/mmcblk0/queue/scheduler
@@ -205,10 +182,6 @@ on post-fs
     chmod 0664 /sys/block/mmcblk0/bkops_en
 
 on post-fs-data
-    # we will remap this as /mnt/sdcard with the sdcard fuse tool
-    mkdir /data/media 0770 media_rw media_rw
-    chown media_rw media_rw /data/media
-
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
     mkdir /system/etc/wifi 0770 wifi wifi
@@ -408,12 +381,6 @@ service qmuxd /system/bin/qmuxd
 service netmgrd /system/bin/netmgrd
     class main
 
-#service sensors /system/bin/sensors.qcom
-#    class late_start
-#    user root
-#    group root
-#    disabled
-
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
 # but only if ro.data.large_tcp_window_size property is set.
 on property:ro.data.large_tcp_window_size=true
@@ -539,127 +506,6 @@ service wifi-crda /system/bin/sh /system/etc/init.crda.sh
    disabled
    oneshot
 
-on property:sys.boot_completed=1
-    write /sys/block/mmcblk0/queue/scheduler row
-
-    write /sys/module/rpm_resources/enable_low_power/L2_cache 1
-    write /sys/module/rpm_resources/enable_low_power/pxo 1
-    write /sys/module/rpm_resources/enable_low_power/vdd_dig 1
-    write /sys/module/rpm_resources/enable_low_power/vdd_mem 1
-    write /sys/module/pm_8x60/modes/cpu0/retention/idle_enabled 1
-    write /sys/module/pm_8x60/modes/cpu1/retention/idle_enabled 1
-    write /sys/module/pm_8x60/modes/cpu2/retention/idle_enabled 1
-    write /sys/module/pm_8x60/modes/cpu3/retention/idle_enabled 1
-    write /sys/module/pm_8x60/modes/cpu0/power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu1/power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu2/power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu3/power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu2/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu3/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/idle_enabled 1
-    write /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/idle_enabled 1
-    write /sys/module/pm_8x60/modes/cpu2/standalone_power_collapse/idle_enabled 1
-    write /sys/module/pm_8x60/modes/cpu3/standalone_power_collapse/idle_enabled 1
-    write /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled 1
-    write /sys/module/msm_thermal/core_control/enabled 0
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 90000
-    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1134000
-    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay 30000
-    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
-    write /sys/devices/system/cpu/cpufreq/interactive/sync_freq 810000
-    write /sys/devices/system/cpu/cpufreq/interactive/sync_freq_load_threshold 80
-    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 90
-    write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_freq 810000
-    write /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_load 70
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 384000
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 384000
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 384000
-    write /sys/module/msm_thermal/core_control/enabled 1
-    chown root system /sys/devices/system/cpu/mfreq
-    chmod 220 /sys/devices/system/cpu/mfreq
-    chown system system /sys/devices/system/cpu/cpu1/online
-    chown system system /sys/devices/system/cpu/cpu2/online
-    chown system system /sys/devices/system/cpu/cpu3/online
-    chmod 664 /sys/devices/system/cpu/cpu1/online
-    chmod 664 /sys/devices/system/cpu/cpu2/online
-    chmod 664 /sys/devices/system/cpu/cpu3/online
-    # Set DCVS parameters for CPU
-    write /sys/module/msm_dcvs/cores/cpu0/slack_time_max_us 40000
-    write /sys/module/msm_dcvs/cores/cpu0/slack_time_min_us 40000
-    write /sys/module/msm_dcvs/cores/cpu0/em_win_size_min_us 100000
-    write /sys/module/msm_dcvs/cores/cpu0/em_win_size_max_us 500000
-    write /sys/module/msm_dcvs/cores/cpu0/slack_mode_dynamic 0
-    write /sys/module/msm_dcvs/cores/cpu0/disable_pc_threshold 1000000
-    write /sys/module/msm_dcvs/cores/cpu1/slack_time_max_us 25000
-    write /sys/module/msm_dcvs/cores/cpu1/slack_time_min_us 25000
-    write /sys/module/msm_dcvs/cores/cpu1/em_win_size_min_us 100000
-    write /sys/module/msm_dcvs/cores/cpu1/em_win_size_max_us 500000
-    write /sys/module/msm_dcvs/cores/cpu1/slack_mode_dynamic 0
-    write /sys/module/msm_dcvs/cores/cpu1/disable_pc_threshold 1000000
-    write /sys/module/msm_dcvs/cores/cpu2/slack_time_max_us 25000
-    write /sys/module/msm_dcvs/cores/cpu2/slack_time_min_us 25000
-    write /sys/module/msm_dcvs/cores/cpu2/em_win_size_min_us 100000
-    write /sys/module/msm_dcvs/cores/cpu2/em_win_size_max_us 500000
-    write /sys/module/msm_dcvs/cores/cpu2/slack_mode_dynamic 0
-    write /sys/module/msm_dcvs/cores/cpu2/disable_pc_threshold 1000000
-    write /sys/module/msm_dcvs/cores/cpu3/slack_time_max_us 25000
-    write /sys/module/msm_dcvs/cores/cpu3/slack_time_min_us 25000
-    write /sys/module/msm_dcvs/cores/cpu3/em_win_size_min_us 100000
-    write /sys/module/msm_dcvs/cores/cpu3/em_win_size_max_us 500000
-    write /sys/module/msm_dcvs/cores/cpu3/slack_mode_dynamic 0
-    write /sys/module/msm_dcvs/cores/cpu3/disable_pc_threshold 1000000
-    # Set DCVS parameters for GPU
-    write /sys/module/msm_dcvs/cores/gpu0/slack_time_max_us 20000
-    write /sys/module/msm_dcvs/cores/gpu0/slack_time_min_us 20000
-    write /sys/module/msm_dcvs/cores/gpu0/slack_mode_dynamic 0
-    # Set msm_mpdecision parameters
-    write /sys/module/msm_mpdecision/slack_time_max_us 45000
-    write /sys/module/msm_mpdecision/slack_time_min_us 15000
-    write /sys/module/msm_mpdecision/em_win_size_min_us 100000
-    write /sys/module/msm_mpdecision/em_win_size_max_us 1000000
-    write /sys/module/msm_mpdecision/online_util_pct_min 3
-    write /sys/module/msm_mpdecision/online_util_pct_max 25
-    write /sys/module/msm_mpdecision/em_max_util_pct 97
-    write /sys/module/msm_mpdecision/rq_avg_poll_ms 2
-    write /sys/module/msm_mpdecision/mp_em_rounding_point_min 10
-    write /sys/module/msm_mpdecision/mp_em_rounding_point_max 85
-    write /sys/module/msm_mpdecision/iowait_threshold_pct 50
-    # Set permissions for the nodes needed by display on/off hook
-    chown system system /sys/module/msm_dcvs/cores/cpu0/slack_time_max_us
-    chown system system /sys/module/msm_dcvs/cores/cpu0/slack_time_min_us
-    chown system system /sys/module/msm_mpdecision/slack_time_max_us
-    chown system system /sys/module/msm_mpdecision/slack_time_min_us
-    chmod 664 /sys/module/msm_dcvs/cores/cpu0/slack_time_max_us
-    chmod 664 /sys/module/msm_dcvs/cores/cpu0/slack_time_min_us
-    chmod 664 /sys/module/msm_mpdecision/slack_time_max_us
-    chmod 664 /sys/module/msm_mpdecision/slack_time_min_us
-    write /sys/module/cpu_boost/parameters/boost_ms 10
-    write /sys/module/cpu_boost/parameters/input_boost_ms 10
-    write /sys/module/cpu_boost/parameters/sync_threshold 1242000
-    write /sys/module/cpu_boost/parameters/input_boost_freq 1134000
-
-    # Set performance profile
-    setprop sys.perf.profile 1
-
-#service atfwd /system/bin/ATFWD-daemon
-#    class late_start
-#    user system
-#    group system radio
-#    onrestart /system/bin/log -t RIL-ATFWD -p w "ATFWD daemon restarted"
-
-    # Set up KSM
-    write /sys/kernel/mm/ksm/deferred_timer 1
-    write /sys/kernel/mm/ksm/pages_to_scan 100
-    write /sys/kernel/mm/ksm/sleep_millisecs 500
-    write /sys/kernel/mm/ksm/run 1
-
 service hdmid /system/bin/hdmid
     class late_start
     socket hdmid stream 0660 root system graphics
@@ -690,30 +536,7 @@ service profiler_daemon /system/bin/profiler_daemon
     group root
     disabled
 
-# virtual sdcard daemon running as media_rw (1023)
-service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
-    class late_start
-    oneshot
-
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
-    class late_start
-    disabled
-
-service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/usbdisk /storage/usbdisk
-    class late_start
-    disabled
-
-on property:ro.fuse_sdcard=true
-    start sdcard
-
-# This will make sure that sdcard service starts as late_start.
-on nonencrypted
-    setprop ro.fuse_sdcard ${persist.fuse_sdcard}
-
-on property:vold.decrypt=trigger_restart_framework
-    setprop ro.fuse_sdcard ${persist.fuse_sdcard}
-
-service charger /charger
+service charger /sbin/healthd -c
     class charger
     seclabel u:r:healthd:s0
 
@@ -725,101 +548,3 @@ on property:persist.sys.ssr.restart_level=1
     write /sys/module/subsystem_restart/parameters/restart_level 1
 on property:persist.sys.ssr.restart_level=3
     write /sys/module/subsystem_restart/parameters/restart_level 3
-
-# Powersave
-on property:sys.perf.profile=0
-    stop mpdecision
-    write /sys/module/msm_thermal/core_control/enabled 0
-    write /sys/devices/system/cpu/cpu0/online 1
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor conservative
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor conservative
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor conservative
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor conservative
-    write /sys/devices/system/cpu/cpufreq/conservative/down_threshold 50
-    write /sys/devices/system/cpu/cpufreq/conservative/freq_step 10
-    write /sys/devices/system/cpu/cpufreq/conservative/ignore_nice_load 1
-    write /sys/devices/system/cpu/cpufreq/conservative/sampling_down_factor 1
-    write /sys/devices/system/cpu/cpufreq/conservative/sampling_rate 160000
-    write /sys/devices/system/cpu/cpufreq/conservative/sampling_rate_min 160000
-    write /sys/devices/system/cpu/cpufreq/conservative/up_threshold 90
-    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor ondemand
-    write /sys/module/msm_thermal/core_control/enabled 1
-    start mpdecision
-
-# Balanced
-on property:sys.perf.profile=1
-    stop mpdecision
-    write /sys/module/msm_thermal/core_control/enabled 0
-    write /sys/devices/system/cpu/cpu0/online 1
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay 30000
-    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 90
-    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1134000
-    write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 90000
-    write /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor 2
-    write /sys/devices/system/cpu/cpufreq/interactive/sync_freq 810000
-    write /sys/devices/system/cpu/cpufreq/interactive/target_loads 90
-    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
-    write /sys/devices/system/cpu/cpufreq/interactive/timer_slack 80000
-    write /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_freq 810000
-    write /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_load 70
-    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor ondemand
-    write /sys/module/msm_thermal/core_control/enabled 1
-    start mpdecision
-
-# High performance
-on property:sys.perf.profile=2
-    stop mpdecision
-    write /sys/devices/system/cpu/cpu0/online 1
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor performance
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor performance
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor performance
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor performance
-    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor performance
-
-on charger
-    mount_all fstab.qcom
-    class_start charger
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/module/rpm_resources/enable_low_power/L2_cache 1
-    write /sys/module/rpm_resources/enable_low_power/pxo 1
-    write /sys/module/rpm_resources/enable_low_power/vdd_dig 1
-    write /sys/module/rpm_resources/enable_low_power/vdd_mem 1
-    write /sys/module/pm_8x60/modes/cpu0/power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu1/power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu2/power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu3/power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu2/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu3/standalone_power_collapse/suspend_enabled 1
-    write /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/idle_enabled 1
-    write /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/idle_enabled 1
-    write /sys/module/pm_8x60/modes/cpu2/standalone_power_collapse/idle_enabled 1
-    write /sys/module/pm_8x60/modes/cpu3/standalone_power_collapse/idle_enabled 1
-    write /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled 0
-    write /sys/module/pm_8x60/modes/cpu1/power_collapse/idle_enabled 0
-    write /sys/module/pm_8x60/modes/cpu2/power_collapse/idle_enabled 0
-    write /sys/module/pm_8x60/modes/cpu3/power_collapse/idle_enabled 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "powersave"
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "powersave"
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "powersave"
-    write /sys/devices/system/cpu/cpu1/online 0
-    write /sys/devices/system/cpu/cpu2/online 0
-    write /sys/devices/system/cpu/cpu3/online 0

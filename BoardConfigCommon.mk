@@ -34,7 +34,7 @@ TARGET_CPU_VARIANT := krait
 TARGET_BOOTLOADER_BOARD_NAME := MSM8960
 
 # Kernel
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 zcache msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 zcache msm_rtb.filter=0x3F ehci-hcd.park=3
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -73,14 +73,16 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 BOARD_BATTERY_DEVICE_NAME := "battery"
 BOARD_CHARGING_CMDLINE_NAME := "androidboot.bootchg"
 BOARD_CHARGING_CMDLINE_VALUE := "true"
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
 
 # CMHW
 BOARD_HARDWARE_CLASS += device/samsung/jf-common/cmhw
 
 # Display
-BOARD_EGL_CFG := device/samsung/jf-common/configs/egl.cfg
 BOARD_USES_LEGACY_MMAP := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 TARGET_DISPLAY_USE_RETIRE_FENCE := true
 TARGET_NO_INITLOGO := true
 
@@ -89,6 +91,7 @@ EXTENDED_FONT_FOOTPRINT := true
 
 # GPS
 TARGET_NO_RPC := true
+TARGET_GPS_HAL_PATH := device/samsung/jf-common/gps
 
 # Includes
 TARGET_SPECIFIC_HEADER_PATH += device/samsung/jf-common/include
@@ -129,37 +132,6 @@ BOARD_RIL_CLASS := ../../../device/samsung/jf-common/ril
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/samsung/jf-common/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    bluetooth.te \
-    device.te \
-    file_contexts \
-    file.te \
-    genfs_contexts \
-    healthd.te \
-    hostapd.te \
-    insthk.te \
-    kernel.te \
-    keypad_dev.te \
-    macloader.te \
-    mdm_helper.te \
-    mediaserver.te \
-    mm-pp-daemon.te \
-    mm-qcamerad.te \
-    mpdecision.te \
-    netd.te \
-    panel_dev.te \
-    property_contexts \
-    property.te \
-    rild.te \
-    system_app.te \
-    system_server.te \
-    tee.te \
-    thermal-engine.te \
-    ueventd.te \
-    vibe_dev.te \
-    vold.te \
-    wpa.te
 
 # Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true

@@ -118,6 +118,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/gps.conf:/system/etc/gps.conf \
     $(LOCAL_PATH)/gps/etc/sap.conf:/system/etc/sap.conf
 
+# IPv6 tethering
+PRODUCT_PACKAGES += \
+    ebtables \
+    ethertypes
+
 # IR
 PRODUCT_PACKAGES += \
     consumerir.msm8960
@@ -185,14 +190,14 @@ PRODUCT_PACKAGES += \
     init.carrier.rc \
     init.crda.sh \
     init.qcom.rc \
+    init.qcom.power.rc \
     init.qcom.usb.rc \
     init.target.rc \
     ueventd.qcom.rc
 
-# Thermal
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermal-engine.conf:system/etc/thermal-engine.conf \
-    $(LOCAL_PATH)/configs/thermal-engine-8064ab.conf:system/etc/thermal-engine-8064ab.conf
+# Samsung symbols
+PRODUCT_PACKAGES += \
+    libsamsung_symbols
 
 # USB
 PRODUCT_PACKAGES += \
@@ -219,6 +224,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.speaker.location=high \
     ro.qc.sdk.audio.fluencetype=fluence
 
+# charging mode
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.enable_boot_charger_mode=1
+
 # display
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.text_cache_width=2048 \
@@ -238,7 +247,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.fill_eons=1 \
     persist.radio.use_se_table_only=1 \
     ro.telephony.ril.config=newDriverCallU,newDialCode \
-    ro.ril.telephony.mqanelements=6
+    ro.ril.telephony.mqanelements=6 \
+    ro.telephony.mms_data_profile=5
 
 # gps
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -276,10 +286,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # ril
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=jflteRIL
-
-# usb
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.isUsbOtgEnabled=true
 
 # wifi
 PRODUCT_PROPERTY_OVERRIDES += \

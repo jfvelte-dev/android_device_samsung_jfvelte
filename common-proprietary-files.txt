@@ -1,8 +1,7 @@
 # Bins
 bin/mpdecision
-bin/thermal-engine
+bin/radish
 lib/libqc-opt.so
-lib/libthermalclient.so
 
 # Bluetooth firmware
 vendor/firmware/bcm4335.hcd
@@ -96,8 +95,12 @@ vendor/lib/libc2d30.so
 vendor/lib/libCB.so
 vendor/lib/libgsl.so
 vendor/lib/libllvm-a3xx.so
+vendor/lib/libllvm-qcom.so
 vendor/lib/libOpenCL.so
 vendor/lib/libOpenVG.so
+vendor/lib/libRSDriver_adreno.so
+vendor/lib/librs_adreno.so
+vendor/lib/librs_adreno_sha1.so
 vendor/lib/libsc-a3xx.so
 
 # GPU Firmware
