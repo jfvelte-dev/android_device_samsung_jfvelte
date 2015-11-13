@@ -38,7 +38,7 @@ BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 zcache msm_rtb.f
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 BOARD_KERNEL_PAGESIZE := 2048
-TARGET_KERNEL_CONFIG := cyanogen_jf_defconfig
+TARGET_KERNEL_CONFIG := cyanogen_jfve_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/jf
 
 # Audio
@@ -57,12 +57,28 @@ BOARD_USES_SEPERATED_VOIP := true
 TARGET_USES_QCOM_COMPRESSED_AUDIO := true
 QCOM_ADSP_SSR_ENABLED := false
 
+# Enable dex-preopt
+ifeq ($(HOST_OS),linux)
+  ifeq ($(WITH_DEXPREOPT),)
+    WITH_DEXPREOPT := true
+  endif
+endif
+
+# ANT
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
+
+# efFAT
+
+TARGET_USES_EXFAT := true
+WITH_EXFAT        := true
+
 # Bluetooth
+BOARD_HAVE_BLUETOOTH      := true
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BLUETOOTH_HCI_USE_MCT     := true
+QCOM_BT_USE_SMD_TTY       := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/jf-common/bluetooth
-BOARD_BLUEDROID_VENDOR_CONF := device/samsung/jf-common/bluetooth/vnd_jf.txt
-BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY     := true
 
 # Camera
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
@@ -70,10 +86,10 @@ TARGET_PROVIDES_CAMERA_HAL := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Charger
-BOARD_BATTERY_DEVICE_NAME := "battery"
-BOARD_CHARGING_CMDLINE_NAME := "androidboot.bootchg"
-BOARD_CHARGING_CMDLINE_VALUE := "true"
-BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_BATTERY_DEVICE_NAME     := "battery"
+BOARD_CHARGING_CMDLINE_NAME   := "androidboot.bootchg"
+BOARD_CHARGING_CMDLINE_VALUE  := "true"
+BOARD_CHARGER_ENABLE_SUSPEND  := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 
 # CMHW
@@ -136,14 +152,21 @@ BOARD_VOLD_MAX_PARTITIONS := 28
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
 # Wifi module
-BOARD_WLAN_DEVICE := bcmdhd
-BOARD_HAVE_SAMSUNG_WIFI := true
-BOARD_HOSTAPD_DRIVER := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_${BOARD_WLAN_DEVICE}
-BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_${BOARD_WLAN_DEVICE}
-WPA_SUPPLICANT_VERSION := VER_0_8_X
-WIFI_BAND := 802_11_ABG
-WIFI_DRIVER_FW_PATH_AP := "/system/etc/wifi/bcmdhd_apsta.bin"
-WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/dhd/parameters/firmware_path"
-WIFI_DRIVER_FW_PATH_STA := "/system/etc/wifi/bcmdhd_sta.bin"
+BOARD_HAS_QCOM_WLAN              := true
+TARGET_USES_WCNSS_CTRL           := true
+TARGET_PROVIDES_WCNSS_QMI        := true
+TARGET_USES_QCOM_WCNSS_QMI       := true
+# TARGET_USES_WCNSS_MAC_ADDR_REV   := true
+# TARGET_WCNSS_MAC_PREFIX          := e8bba8
+BOARD_WLAN_DEVICE                := qcwcn
+BOARD_HOSTAPD_DRIVER             := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
+WIFI_DRIVER_FW_PATH_STA          := "sta"
+WIFI_DRIVER_FW_PATH_AP           := "ap"
+WIFI_DRIVER_FW_PATH_P2P          := "p2p"
+# WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/wlan.ko"
+# WIFI_DRIVER_MODULE_NAME          := "wlan"
+# CONFIG_EAP_PROXY                 := qmi

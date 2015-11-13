@@ -18,6 +18,13 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
+#define BLUETOOTH_QTI_SW TRUE
+
+// skips conn update at conn completion
+#define BTA_BLE_SKIP_CONN_UPD  TRUE
+// Enables interleaved scan
+#define BTA_HOST_INTERLEAVE_SEARCH TRUE
+
 #define BTM_DEF_LOCAL_NAME   "Samsung Galaxy S IV"
 
 #define BTA_SKIP_BLE_READ_REMOTE_FEAT TRUE
