@@ -66,6 +66,10 @@ $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk
 
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
+# Art
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-swap=false
+
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
@@ -272,6 +276,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.ds_fmc_app.mode=0 \
     persist.data_netmgrd_nint=16 \
+    persist.data.qmi.adb_logmask=0 \
     persist.omh.enabled=1 \
     persist.radio.add_power_save=1 \
     persist.radio.fill_eons=1 \
