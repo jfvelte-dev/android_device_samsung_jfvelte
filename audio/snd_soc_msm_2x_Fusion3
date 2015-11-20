@@ -694,11 +694,13 @@ SectionVerb
 	EnableSequence
 		'STUB_RX Mixer Voice Stub':1:1
 		'Voice Stub Tx Mixer STUB_TX_HL':1:1
+		'Voice Stub Tx Mixer STUB_1_TX_HL':1:1
 	EndSequence
 
 	DisableSequence
 		'STUB_RX Mixer Voice Stub':1:0
 		'Voice Stub Tx Mixer STUB_TX_HL':1:0
+		'Voice Stub Tx Mixer STUB_1_TX_HL':1:0
 	EndSequence
 
 	# ALSA PCMs
@@ -2002,24 +2004,22 @@ SectionDevice
 	Name "Voice Earpiece"
 	Comment "Handset Rx device for voice call"
 
-    EnableSequence
-        'SLIM_0_RX Channels':0:One
-        'RX1 MIX1 INP1':0:RX1
-        'RX1 MIX1 INP2':0:RX6
-        'EAR PA Gain':0:POS_6_DB
-        'DAC1 Switch':1:1
-        'RX1 Digital Volume':2:71%
-        'ES325 RX2 Enable':1:1
-    EndSequence
+	EnableSequence
+		'SLIM_0_RX Channels':0:One
+		'RX1 MIX1 INP1':0:RX1
+		'RX1 MIX1 INP2':0:RX6
+		'EAR PA Gain':0:POS_6_DB
+		'DAC1 Switch':1:1
+		'RX1 Digital Volume':2:71%
+	EndSequence
 
-    DisableSequence
-        'RX1 MIX1 INP1':0:ZERO
-        'RX1 MIX1 INP2':0:ZERO
-        'DAC1 Switch':1:0
-        'EAR PA Gain':0:ZERO
-        'RX1 Digital Volume':1:0
-        'ES325 RX2 Enable':1:0
-    EndSequence
+	DisableSequence
+		'RX1 MIX1 INP1':0:ZERO
+		'RX1 MIX1 INP2':0:ZERO
+		'DAC1 Switch':1:0
+		'EAR PA Gain':0:ZERO
+		'RX1 Digital Volume':1:0
+	EndSequence
 
     ACDBID  7:1
 
@@ -2857,24 +2857,24 @@ SectionDevice
 	Name "Speaker DMIC Stereo"
 	Comment "Stereo Mic Tx device [now is modified - no more stereo here]"
 
-    EnableSequence
-        'SLIM_0_TX Channels':0:One
-        'SLIM TX7 MUX':0:DEC4
-        'DEC4 MUX':0:ADC3
-        'ADC3 Volume':2:91.7%
-        'DEC4 Volume':2:85%
-        'MICBIAS1 CAPLESS Switch':1:1
+	EnableSequence
+		'SLIM_0_TX Channels':0:One
+		'SLIM TX7 MUX':0:DEC4
+		'DEC4 MUX':0:ADC3
+		'ADC3 Volume':2:91.7%
+		'DEC4 Volume':2:85%
+		'MICBIAS1 CAPLESS Switch':1:1
 		'TX7 HPF cut off':0:MIN_3DB_150Hz
-    EndSequence
+	EndSequence
 
-    DisableSequence
-        'SLIM TX7 MUX':0:ZERO
-        'DEC4 MUX':0:ZERO
-        'ADC3 Volume':1:0
-        'DEC4 Volume':1:64
-        'MICBIAS1 CAPLESS Switch':1:0
+	DisableSequence
+		'SLIM TX7 MUX':0:ZERO
+		'DEC4 MUX':0:ZERO
+		'ADC3 Volume':1:0
+		'DEC4 Volume':1:85
+		'MICBIAS1 CAPLESS Switch':1:0
 		'TX7 HPF cut off':0:MIN_3DB_4Hz
-    EndSequence
+	EndSequence
 
     ACDBID	54:2
 	

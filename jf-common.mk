@@ -95,10 +95,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/audio/snd_soc_msm_2x_Fusion3:system/etc/snd_soc_msm/snd_soc_msm_2x_Fusion3
 
-# Bluetooth
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/bluetooth/bcm4335_prepatch.hcd:system/vendor/firmware/bcm4335_prepatch.hcd
-
 # Camera Wrapper
 PRODUCT_PACKAGES += \
     camera.msm8960
@@ -221,7 +217,7 @@ PRODUCT_PACKAGES += \
 # Prima opensource driver files
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/prima/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
-    $(LOCAL_PATH)/wifi/prima/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
+    $(LOCAL_PATH)/wifi/prima/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
     $(LOCAL_PATH)/wifi/prima/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
 
 # add support for our wifi
@@ -234,6 +230,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf \
     $(LOCAL_PATH)/configs/hostapd.accept:system/etc/hostapd/hostapd.accept \
     $(LOCAL_PATH)/configs/hostapd.deny:system/etc/hostapd/hostapd.deny
+
+# Bluetooth script and proprietary files (for now here in order not to bloat TheMuppets)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/bluetooth/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+	$(LOCAL_PATH)/bluetooth/btnvtool:system/bin/btnvtool \
+	$(LOCAL_PATH)/bluetooth/hci_qcomm_init:system/bin/hci_qcomm_init \
+	$(LOCAL_PATH)/bluetooth/libbtnv.so:system/lib/libbtnv.so
 	
 # SoftAP
 PRODUCT_PACKAGES += \
@@ -247,9 +250,9 @@ PRODUCT_COPY_FILES += \
 
 # audio
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.audio.dualmic.config=endfire \
+    persist.audio.fluence.mode=endfire \
     persist.audio.vr.enable=false \
-    persist.audio.fluence.voicecall=true \
+    persist.audio.handset.mic=digital \
     persist.audio.speaker.location=high \
     ro.qc.sdk.audio.fluencetype=fluence
 

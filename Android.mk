@@ -55,7 +55,6 @@ FIRMWARE_IMAGES := \
     tzapps.b00 tzapps.b01 tzapps.b02 tzapps.b03 tzapps.mdt \
     vidc.b00 vidc.b01 vidc.b02 vidc.b03 vidc.mdt \
     keymaste.b00 keymaste.b01 keymaste.b02 keymaste.b03 keymaste.mdt \
-    mobicore.b00 mobicore.b01 mobicore.b02 mobicore.b03 mobicore.mdt \
     mc_v2.b00 mc_v2.b01 mc_v2.b02 mc_v2.b03 mc_v2.mdt \
     skmm_ta.b00 skmm_ta.b01 skmm_ta.b02 skmm_ta.b03 skmm_ta.mdt \
     tima_atn.b00 tima_atn.b01 tima_atn.b02 tima_atn.b03 tima_atn.mdt \
@@ -72,5 +71,15 @@ $(FIRMWARE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /firmware/image/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_SYMLINKS)
+
+$(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wlan/prima; \
+	ln -sf /data/misc/wifi/WCNSS_qcom_cfg.ini \
+		$(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_cfg.ini)
+
+$(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wcd9310; \
+	ln -sf /data/misc/audio/wcd9310_anc.bin \
+		$(TARGET_OUT_ETC)/firmware/wcd9310/wcd9310_anc.bin; \
+	ln -sf /data/misc/audio/mbhc.bin \
+		$(TARGET_OUT_ETC)/firmware/wcd9310/wcd9310_mbhc.bin)
 
 endif

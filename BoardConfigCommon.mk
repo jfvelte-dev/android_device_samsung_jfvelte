@@ -34,7 +34,7 @@ TARGET_CPU_VARIANT := krait
 TARGET_BOOTLOADER_BOARD_NAME := MSM8960
 
 # Kernel
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 zcache msm_rtb.filter=0x3F ehci-hcd.park=3
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 zcache msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -68,7 +68,6 @@ endif
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # efFAT
-
 TARGET_USES_EXFAT := true
 WITH_EXFAT        := true
 
@@ -78,7 +77,6 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT     := true
 QCOM_BT_USE_SMD_TTY       := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/jf-common/bluetooth
-BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY     := true
 
 # Camera
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
@@ -156,8 +154,6 @@ BOARD_HAS_QCOM_WLAN              := true
 TARGET_USES_WCNSS_CTRL           := true
 TARGET_PROVIDES_WCNSS_QMI        := true
 TARGET_USES_QCOM_WCNSS_QMI       := true
-# TARGET_USES_WCNSS_MAC_ADDR_REV   := true
-# TARGET_WCNSS_MAC_PREFIX          := e8bba8
 BOARD_WLAN_DEVICE                := qcwcn
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
@@ -166,7 +162,3 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
 WIFI_DRIVER_FW_PATH_STA          := "sta"
 WIFI_DRIVER_FW_PATH_AP           := "ap"
-WIFI_DRIVER_FW_PATH_P2P          := "p2p"
-# WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/wlan.ko"
-# WIFI_DRIVER_MODULE_NAME          := "wlan"
-# CONFIG_EAP_PROXY                 := qmi
