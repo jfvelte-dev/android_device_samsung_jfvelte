@@ -265,7 +265,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # display
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.hwui.text_cache_width=2048 \
     ro.opengles.version=196608 \
     ro.sf.lcd_density=480
 
@@ -313,11 +312,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true \
     ro.vendor.extension_library=libqti-perfd-client.so
-
-# recovery
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.cwm.enable_key_repeat=true \
-    ro.cwm.repeatable_keys=114,115
 
 # ril
 PRODUCT_PROPERTY_OVERRIDES += \
