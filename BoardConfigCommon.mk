@@ -70,8 +70,7 @@ endif
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # efFAT
-TARGET_USES_EXFAT := true
-WITH_EXFAT        := true
+TARGET_KERNEL_HAVE_EXFAT := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH      := true
