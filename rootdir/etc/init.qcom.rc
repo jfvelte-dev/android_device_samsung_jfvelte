@@ -477,6 +477,15 @@ service wlandutservice /system/bin/wlandutservice
     disabled
     oneshot
 
+service macloader /system/bin/macloader
+    class main
+    oneshot
+
+on property:init.svc.macloader=stopped
+    chown system root /data/.rev
+    chmod 0664 /data/.rev
+# end of wifi
+
 on property:crypto.driver.load=1
      insmod /system/lib/modules/qce.ko
      insmod /system/lib/modules/qcedev.ko
@@ -513,12 +522,6 @@ service hdmid /system/bin/hdmid
     class late_start
     socket hdmid stream 0660 root system graphics
     disabled
-
-service ppd /system/bin/mm-pp-daemon
-    class late_start
-    user system
-    socket pps stream 0660 system system graphics
-    group system graphics
 
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
