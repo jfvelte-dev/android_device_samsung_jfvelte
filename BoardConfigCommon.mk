@@ -63,11 +63,11 @@ QCOM_ADSP_SSR_ENABLED := false
 QCOM_PROXY_DEVICE_ENABLED := true
 
 # Enable dex-preopt
-ifeq ($(HOST_OS),linux)
-  ifeq ($(WITH_DEXPREOPT),)
-    WITH_DEXPREOPT := true
-  endif
-endif
+#ifeq ($(HOST_OS),linux)
+#  ifeq ($(WITH_DEXPREOPT),)
+#    WITH_DEXPREOPT := true
+#  endif
+#endif
 
 # ANT
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
