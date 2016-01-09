@@ -2827,7 +2827,7 @@ SectionDevice
         'TX4 HPF cut off':0:MIN_3DB_150Hz
         'TX5 HPF cut off':0:MIN_3DB_150Hz
         'ES325-AP Tx Channels':0:One
-        'Internal Route Config':1:3
+        'Internal Route Config':1:1
         'ES325 TX1 Enable':1:1
     EndSequence
 
