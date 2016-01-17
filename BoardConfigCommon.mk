@@ -72,9 +72,6 @@ QCOM_ADSP_SSR_ENABLED := false
 # ANT
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
-# efFAT
-TARGET_KERNEL_HAVE_EXFAT := true
-
 # Bluetooth
 BOARD_HAVE_BLUETOOTH      := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
