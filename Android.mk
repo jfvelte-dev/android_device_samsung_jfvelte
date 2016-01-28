@@ -53,7 +53,6 @@ ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_MDM_SYMLINKS)
 FIRMWARE_IMAGES := \
     q6.b00 q6.b01 q6.b03 q6.b04 q6.b05 q6.b06 q6.mdt \
     tzapps.b00 tzapps.b01 tzapps.b02 tzapps.b03 tzapps.mdt \
-    vidc.b00 vidc.b01 vidc.b02 vidc.b03 vidc.mdt \
     keymaste.b00 keymaste.b01 keymaste.b02 keymaste.b03 keymaste.mdt \
     mc_v2.b00 mc_v2.b01 mc_v2.b02 mc_v2.b03 mc_v2.mdt \
     skmm_ta.b00 skmm_ta.b01 skmm_ta.b02 skmm_ta.b03 skmm_ta.mdt \
