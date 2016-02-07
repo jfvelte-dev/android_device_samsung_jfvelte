@@ -22,4 +22,6 @@
     <!-- Volume Rocker Wake Support. Some devices do not support (PMU) this.
          Setting to false will disable Volume Rocker Wake support -->
     <bool name="config_show_volumeRockerWake">true</bool>
+    
+    <bool name="config_hide_wifi_region_code">true</bool>
 </resources>
