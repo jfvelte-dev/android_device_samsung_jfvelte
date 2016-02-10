@@ -108,6 +108,10 @@ PRODUCT_PACKAGES += \
     libgenlock \
     memtrack.msm8960
 
+# Stlport
+PRODUCT_PACKAGES += \
+    libstlport
+
 # Doze
 PRODUCT_PACKAGES += \
     SamsungDoze
