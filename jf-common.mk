@@ -100,13 +100,6 @@ PRODUCT_PACKAGES += \
     Snap \
     camera.msm8960
 
-# CRDA
-PRODUCT_PACKAGES += \
-    crda \
-    linville.key.pub.pem \
-    regdbdump \
-    regulatory.bin
-
 # Display
 PRODUCT_PACKAGES += \
     copybit.msm8960 \
@@ -114,6 +107,10 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8960 \
     libgenlock \
     memtrack.msm8960
+
+# Stlport
+PRODUCT_PACKAGES += \
+    libstlport
 
 # Doze
 PRODUCT_PACKAGES += \
