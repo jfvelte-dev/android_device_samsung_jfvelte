@@ -42,8 +42,7 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 BOARD_KERNEL_PAGESIZE := 2048
 TARGET_KERNEL_CONFIG := cyanogen_jfve_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/jf
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.9/bin
-KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
 
 # Audio
 BOARD_HAVE_AUDIENCE_ES325_2MIC := false
