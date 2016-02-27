@@ -22,7 +22,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter jfvelte jactivelte jflteatt jfltespr jfltetmo jfltevzw jfltexx jfltecan jflteusc jfltecri jfltecsp jfltezm jftddxx,$(TARGET_DEVICE)),)
+ifneq ($(filter jfvelte,$(TARGET_DEVICE)),)
 
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 
@@ -60,7 +60,8 @@ FIRMWARE_IMAGES := \
     tima_key.b00 tima_key.b01 tima_key.b02 tima_key.b03 tima_key.mdt \
     tima_lkm.b00 tima_lkm.b01 tima_lkm.b02 tima_lkm.b03 tima_lkm.mdt \
     tima_pkm.b00 tima_pkm.b01 tima_pkm.b02 tima_pkm.b03 tima_pkm.mdt \
-    wcnss.b00 wcnss.b01 wcnss.b02 wcnss.b04 wcnss.b05 wcnss.b06 wcnss.mdt
+    wcnss.b00 wcnss.b01 wcnss.b02 wcnss.b04 wcnss.b05 wcnss.b06 wcnss.mdt \
+    vidc.b00 vidc.b01 vidc.b02 vidc.b03 vidc.mdt
 
 FIRMWARE_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(FIRMWARE_IMAGES)))
 $(FIRMWARE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
@@ -70,5 +71,12 @@ $(FIRMWARE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /firmware/image/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_SYMLINKS)
+
+
+$(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wcd9310; \
+	ln -sf /data/misc/audio/wcd9310_anc.bin \
+		$(TARGET_OUT_ETC)/firmware/wcd9310/wcd9310_anc.bin; \
+	ln -sf /data/misc/audio/mbhc.bin \
+		$(TARGET_OUT_ETC)/firmware/wcd9310/wcd9310_mbhc.bin)
 
 endif

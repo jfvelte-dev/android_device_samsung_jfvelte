@@ -23,7 +23,7 @@
 # Inherit from qcom-common
 -include device/samsung/qcom-common/BoardConfigCommon.mk
 
-COMMON_PATH := device/samsung/jf-common
+COMMON_PATH := device/samsung/jfvelte
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8960
