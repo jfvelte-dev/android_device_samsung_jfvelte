@@ -1977,24 +1977,22 @@ SectionDevice
     Name "Voice Earpiece Extra Gain"
     Comment "Handset Extra Gain Rx device"
 
-    EnableSequence
-        'SLIM_0_RX Channels':0:One
-        'RX1 MIX1 INP1':0:RX1
-        'RX1 MIX1 INP2':0:RX6
-        'EAR PA Gain':0:POS_6_DB
-        'DAC1 Switch':1:1
-        'RX1 Digital Volume':2:71%
-        'ES325 RX2 Enable':1:1
-    EndSequence
+	EnableSequence
+		'SLIM_0_RX Channels':0:One
+		'RX1 MIX1 INP1':0:RX1
+		'RX1 MIX1 INP2':0:RX6
+		'EAR PA Gain':0:POS_6_DB
+		'DAC1 Switch':1:1
+		'RX1 Digital Volume':2:67.7%
+	EndSequence
 
-    DisableSequence
-        'RX1 MIX1 INP1':0:ZERO
-        'RX1 MIX1 INP2':0:ZERO
-        'DAC1 Switch':1:0
-        'EAR PA Gain':0:ZERO
-        'RX1 Digital Volume':1:0
-        'ES325 RX2 Enable':1:0
-    EndSequence
+	DisableSequence
+		'RX1 MIX1 INP1':0:ZERO
+		'RX1 MIX1 INP2':0:ZERO
+		'DAC1 Switch':1:0
+		'EAR PA Gain':0:ZERO
+		'RX1 Digital Volume':1:0
+	EndSequence
 
     ACDBID  71:1
 
@@ -2136,25 +2134,23 @@ SectionDevice
     Name "Speaker Extra Gain"
     Comment "Speaker Extra Gain Rx device"
 
-    EnableSequence
-        'SLIM_0_RX Channels':0:One
-        'RX5 MIX1 INP1':0:RX1
-        'RX5 MIX1 INP2':0:RX6
-        'RX6 DSM MUX':0:DSM_INV
-        'LINEOUT2 Volume':1:100
-        'LINEOUT4 Volume':1:100
-        'RX5 Digital Volume':2:67.7%
-        'ES325 RX2 Enable':1:1
-    EndSequence
+	EnableSequence
+		'SLIM_0_RX Channels':0:One
+		'RX5 MIX1 INP1':0:RX1
+		'RX5 MIX1 INP2':0:RX6
+		'RX6 DSM MUX':0:DSM_INV
+		'LINEOUT2 Volume':1:100
+		'LINEOUT4 Volume':1:100
+		'RX5 Digital Volume':2:67.7%
+	EndSequence
 
-    DisableSequence
-        'RX5 MIX1 INP1':0:ZERO
-        'RX5 MIX1 INP2':0:ZERO
-        'LINEOUT2 Volume':1:0
-        'LINEOUT4 Volume':1:0
-        'RX5 Digital Volume':1:0
-        'ES325 RX2 Enable':1:0
-    EndSequence
+	DisableSequence
+		'RX5 MIX1 INP1':0:ZERO
+		'RX5 MIX1 INP2':0:ZERO
+		'LINEOUT2 Volume':1:0
+		'LINEOUT4 Volume':1:0
+		'RX5 Digital Volume':1:0
+	EndSequence
 
     ACDBID  72:1
 
@@ -2164,32 +2160,28 @@ SectionDevice
     Name "Voice Speaker"
     Comment "Speaker for voice call"
 
-    EnableSequence
-        'SLIM_0_RX Channels':0:Two
-        'RX5 MIX1 INP1':0:RX1
-        'RX5 MIX1 INP2':0:RX6
-        'RX6 DSM MUX':0:DSM_INV
-        'RX4 MIX1 INP1':0:RX2
-        'RX4 MIX1 INP2':0:RX7
-        'RX4 DSM MUX':0:CIC_OUT
-        'LINEOUT2 Volume':1:100
-        'LINEOUT4 Volume':1:100
-        'RX5 Digital Volume':2:71%
-        'ES325 RX2 Enable':1:1
-        'VEQ Enable':1:0
-    EndSequence
+	EnableSequence
+		'SLIM_0_RX Channels':0:Two
+		'RX5 MIX1 INP1':0:RX1
+		'RX5 MIX1 INP2':0:RX6
+		'RX6 DSM MUX':0:DSM_INV
+		'RX4 MIX1 INP1':0:RX2
+		'RX4 MIX1 INP2':0:RX7
+		'RX4 DSM MUX':0:CIC_OUT
+		'LINEOUT2 Volume':1:100
+		'LINEOUT4 Volume':1:100
+		'RX5 Digital Volume':2:67.7%
+	EndSequence
 
-    DisableSequence
-        'RX5 MIX1 INP1':0:ZERO
-        'RX5 MIX1 INP2':0:ZERO
-        'RX4 MIX1 INP1':0:ZERO
-        'RX4 MIX1 INP2':0:ZERO
-        'LINEOUT2 Volume':1:0
-        'LINEOUT4 Volume':1:0
-        'RX5 Digital Volume':1:0
-        'ES325 RX2 Enable':1:0
-        'VEQ Enable':1:0
-    EndSequence
+	DisableSequence
+		'RX5 MIX1 INP1':0:ZERO
+		'RX5 MIX1 INP2':0:ZERO
+		'RX4 MIX1 INP1':0:ZERO
+		'RX4 MIX1 INP2':0:ZERO
+		'LINEOUT2 Volume':1:0
+		'LINEOUT4 Volume':1:0
+		'RX5 Digital Volume':1:0
+	EndSequence
 
     ACDBID  15:1
 
@@ -2290,34 +2282,32 @@ SectionDevice
 	Name "Voice Headphones"
 	Comment "Headset Rx device for voice call"
 
-    EnableSequence
-        'SLIM_0_RX Channels':0:Two
-        'RX1 MIX1 INP1':0:RX1
-        'RX1 MIX1 INP2':0:RX6
-        'RX2 MIX1 INP1':0:RX2
-        'RX2 MIX1 INP2':0:RX7
-        'HPHL DAC Switch':1:1
-        'HPHR DAC Switch':1:1
-        'HPHL Volume':1:100
-        'HPHR Volume':1:100
-        'RX1 Digital Volume':2:67.7%
-        'RX2 Digital Volume':2:67.7%
-        'ES325 RX2 Enable':1:1
-    EndSequence
+	EnableSequence
+		'SLIM_0_RX Channels':0:Two
+		'RX1 MIX1 INP1':0:RX1
+		'RX1 MIX1 INP2':0:RX6
+		'RX2 MIX1 INP1':0:RX2
+		'RX2 MIX1 INP2':0:RX7
+		'HPHL DAC Switch':1:1
+		'HPHR DAC Switch':1:1
+		'HPHL Volume':2:66.7%
+		'HPHR Volume':2:66.7%
+		'RX1 Digital Volume':2:66.1%
+		'RX2 Digital Volume':2:66.1%
+	EndSequence
 
-    DisableSequence
-        'RX1 MIX1 INP1':0:ZERO
-        'RX1 MIX1 INP2':0:ZERO
-        'RX2 MIX1 INP1':0:ZERO
-        'RX2 MIX1 INP2':0:ZERO
-        'HPHL DAC Switch':1:0
-        'HPHR DAC Switch':1:0
-        'HPHL Volume':1:0
-        'HPHR Volume':1:0
-        'RX1 Digital Volume':1:0
-        'RX2 Digital Volume':1:0
-        'ES325 RX2 Enable':1:0
-    EndSequence
+	DisableSequence
+		'RX1 MIX1 INP1':0:ZERO
+		'RX1 MIX1 INP2':0:ZERO
+		'RX2 MIX1 INP1':0:ZERO
+		'RX2 MIX1 INP2':0:ZERO
+		'HPHL DAC Switch':1:0
+		'HPHR DAC Switch':1:0
+		'HPHL Volume':1:0
+		'HPHR Volume':1:0
+		'RX1 Digital Volume':1:0
+		'RX2 Digital Volume':1:0
+	EndSequence
 
     ACDBID  10:1
     EffectsMixerCTL "SRS TruMedia"
@@ -2482,24 +2472,19 @@ SectionDevice
     Name "Voice Headset"
     Comment "Call Headset Tx device"
 
-    EnableSequence
-        'SLIM_0_TX Channels':0:One
-        'ES325-AP Tx Channels':0:One
-        'SLIM TX7 MUX':0:DEC5
-        'DEC5 MUX':0:ADC2
-        'ADC2 Volume':1:100
-        'DEC5 Volume':2:67.7%
-        'Internal Route Config':1:0
-        'ES325 TX1 Enable':1:1
-    EndSequence
+	EnableSequence
+		'SLIM_0_TX Channels':0:One
+		'SLIM TX7 MUX':0:DEC5
+		'DEC5 MUX':0:ADC2
+		'ADC2 Volume':1:100
+		'DEC5 Volume':2:67.7%
+	EndSequence
 
-    DisableSequence
-        'SLIM TX7 MUX':0:ZERO
-        'DEC5 MUX':0:ZERO
-        'ADC2 Volume':1:0
-        'Internal Route Config':1:6
-        'ES325 TX1 Enable':1:0
-    EndSequence
+	DisableSequence
+		'SLIM TX7 MUX':0:ZERO
+		'DEC5 MUX':0:ZERO
+		'ADC2 Volume':1:0
+	EndSequence
 
     ACDBID  8:2
 
@@ -2731,33 +2716,28 @@ SectionDevice
 	Name "TTY Handset Tx"
 	Comment "TTY VCO Handset Tx device"
 
-    EnableSequence
-        'SLIM_0_TX Channels':0:One
-        'SLIM TX7 MUX':0:DEC4
-        'DEC4 MUX':0:ADC3
-        'ADC3 Volume':1:100
-        'DEC4 Volume':2:67.7%
-        'MICBIAS3 CAPLESS Switch':1:1
-        'TX3 HPF cut off':0:MIN_3DB_150Hz
-        'TX4 HPF cut off':0:MIN_3DB_150Hz
-        'TX5 HPF cut off':0:MIN_3DB_150Hz
-        'ES325-AP Tx Channels':0:One
-        'Internal Route Config':1:11
-        'ES325 TX1 Enable':1:1
-    EndSequence
+	EnableSequence
+		'SLIM_0_TX Channels':0:One
+		'SLIM TX7 MUX':0:DEC4
+		'DEC4 MUX':0:ADC3
+		'ADC3 Volume':1:100
+		'DEC4 Volume':2:67.7%
+		'MICBIAS3 CAPLESS Switch':1:1
+		'TX3 HPF cut off':0:MIN_3DB_150Hz
+		'TX4 HPF cut off':0:MIN_3DB_150Hz
+		'TX5 HPF cut off':0:MIN_3DB_150Hz
+	EndSequence
 
-    DisableSequence
-        'SLIM TX7 MUX':0:ZERO
-        'DEC4 MUX':0:ZERO
-        'ADC3 Volume':1:0
-        'DEC4 Volume':1:0
-        'MICBIAS3 CAPLESS Switch':1:0
-        'TX3 HPF cut off':0:MIN_3DB_4Hz
-        'TX4 HPF cut off':0:MIN_3DB_4Hz
-        'TX5 HPF cut off':0:MIN_3DB_4Hz
-        'Internal Route Config':1:6
-        'ES325 TX1 Enable':1:0
-    EndSequence
+	DisableSequence
+		'SLIM TX7 MUX':0:ZERO
+		'DEC4 MUX':0:ZERO
+		'ADC3 Volume':1:0
+		'DEC4 Volume':1:0
+		'MICBIAS3 CAPLESS Switch':1:0
+		'TX3 HPF cut off':0:MIN_3DB_4Hz
+		'TX4 HPF cut off':0:MIN_3DB_4Hz
+		'TX5 HPF cut off':0:MIN_3DB_4Hz
+	EndSequence
 
     ACDBID  4:2
 
@@ -2767,41 +2747,36 @@ SectionDevice
 	Name "DMIC Endfire"
 	Comment "Dual MIC Endfire Tx device"
 
-    EnableSequence
-        'SLIM_0_TX Channels':0:Two
-        'SLIM TX7 MUX':0:DEC4
-        'DEC4 MUX':0:ADC3
-        'ADC3 Volume':1:100
-        'DEC4 Volume':2:67.7%
-        'SLIM TX8 MUX':0:DEC3
-        'DEC3 MUX':0:ADC4
-        'ADC4 Volume':1:100
-        'DEC3 Volume':2:67.7%
-        'MICBIAS3 CAPLESS Switch':1:1
-        'TX3 HPF cut off':0:MIN_3DB_150Hz
-        'TX4 HPF cut off':0:MIN_3DB_150Hz
-        'TX5 HPF cut off':0:MIN_3DB_150Hz
-        'ES325-AP Tx Channels':0:One
-        'Internal Route Config':1:4
-        'ES325 TX1 Enable':1:1
-    EndSequence
+	EnableSequence
+		'SLIM_0_TX Channels':0:Two
+		'SLIM TX7 MUX':0:DEC4
+		'DEC4 MUX':0:ADC3
+		'ADC3 Volume':1:100
+		'DEC4 Volume':2:67.7%
+		'SLIM TX8 MUX':0:DEC3
+		'DEC3 MUX':0:ADC4
+		'ADC4 Volume':1:100
+		'DEC3 Volume':2:67.7%
+		'MICBIAS3 CAPLESS Switch':1:1
+		'TX3 HPF cut off':0:MIN_3DB_150Hz
+		'TX4 HPF cut off':0:MIN_3DB_150Hz
+		'TX5 HPF cut off':0:MIN_3DB_150Hz
+	EndSequence
 
-    DisableSequence
-        'SLIM TX7 MUX':0:ZERO
-        'DEC4 MUX':0:ZERO
-        'ADC3 Volume':1:0
-        'DEC4 Volume':1:0
-        'SLIM TX8 MUX':0:ZERO
-        'DEC3 MUX':0:ZERO
-        'DEC3 Volume':1:0
-        'ADC4 Volume':1:0
-        'MICBIAS3 CAPLESS Switch':1:0
-        'TX3 HPF cut off':0:MIN_3DB_4Hz
-        'TX4 HPF cut off':0:MIN_3DB_4Hz
-        'TX5 HPF cut off':0:MIN_3DB_4Hz
-        'Internal Route Config':1:6
-        'ES325 TX1 Enable':1:0
-    EndSequence
+	DisableSequence
+		'SLIM TX7 MUX':0:ZERO
+		'DEC4 MUX':0:ZERO
+		'ADC3 Volume':1:0
+		'DEC4 Volume':1:0
+		'SLIM TX8 MUX':0:ZERO
+		'DEC3 MUX':0:ZERO
+		'DEC3 Volume':1:0
+		'ADC4 Volume':1:0
+		'MICBIAS3 CAPLESS Switch':1:0
+		'TX3 HPF cut off':0:MIN_3DB_4Hz
+		'TX4 HPF cut off':0:MIN_3DB_4Hz
+		'TX5 HPF cut off':0:MIN_3DB_4Hz
+	EndSequence
 
     ACDBID  4:2
 
@@ -2811,43 +2786,36 @@ SectionDevice
 	Name "Speaker DMIC Endfire"
 	Comment "Dual MIC Endfire Tx device"
 
-    EnableSequence
-        'SLIM_0_TX Channels':0:Two
-        'SLIM TX7 MUX':0:DEC2
-        'DEC3 MUX':0:ADC4
-        'ADC4 Volume':1:100
-        'DEC3 Volume':2:67.7%
-        'SLIM TX8 MUX':0:DEC3
-        'DEC2 MUX':0:ADC5
-        'ADC5 Volume':1:100
-        'DEC2 Volume':2:67.7%
-        'MICBIAS3 CAPLESS Switch':1:1
-        'MICBIAS4 CAPLESS Switch':1:1
-        'TX3 HPF cut off':0:MIN_3DB_150Hz
-        'TX4 HPF cut off':0:MIN_3DB_150Hz
-        'TX5 HPF cut off':0:MIN_3DB_150Hz
-        'ES325-AP Tx Channels':0:One
-        'Internal Route Config':1:1
-        'ES325 TX1 Enable':1:1
-    EndSequence
+	EnableSequence
+		'SLIM_0_TX Channels':0:Two
+		'SLIM TX7 MUX':0:DEC3
+		'DEC4 MUX':0:ADC3
+		'ADC3 Volume':1:100
+		'DEC4 Volume':2:67.7%
+		'SLIM TX8 MUX':0:DEC4
+		'DEC3 MUX':0:ADC4
+		'ADC4 Volume':1:100
+		'DEC3 Volume':2:67.7%
+		'MICBIAS3 CAPLESS Switch':1:1
+		'TX3 HPF cut off':0:MIN_3DB_150Hz
+		'TX4 HPF cut off':0:MIN_3DB_150Hz
+		'TX5 HPF cut off':0:MIN_3DB_150Hz
+	EndSequence
 
-    DisableSequence
-        'SLIM TX7 MUX':0:ZERO
-        'DEC3 MUX':0:ZERO
-        'DEC3 Volume':1:0
-        'ADC4 Volume':1:0
-        'SLIM TX8 MUX':0:ZERO
-        'DEC2 MUX':0:ZERO
-        'DEC2 Volume':1:0
-        'ADC5 Volume':1:0
-        'MICBIAS3 CAPLESS Switch':1:0
-        'MICBIAS4 CAPLESS Switch':1:0
-        'TX3 HPF cut off':0:MIN_3DB_4Hz
-        'TX4 HPF cut off':0:MIN_3DB_4Hz
-        'TX5 HPF cut off':0:MIN_3DB_4Hz
-        'Internal Route Config':1:6
-        'ES325 TX1 Enable':1:0
-    EndSequence
+	DisableSequence
+		'SLIM TX7 MUX':0:ZERO
+		'DEC4 MUX':0:ZERO
+		'ADC3 Volume':1:0
+		'DEC4 Volume':1:0
+		'SLIM TX8 MUX':0:ZERO
+		'DEC3 MUX':0:ZERO
+		'DEC3 Volume':1:0
+		'ADC4 Volume':1:0
+		'MICBIAS3 CAPLESS Switch':1:0
+		'TX3 HPF cut off':0:MIN_3DB_4Hz
+		'TX4 HPF cut off':0:MIN_3DB_4Hz
+		'TX5 HPF cut off':0:MIN_3DB_4Hz
+	EndSequence
 
     ACDBID  11:2
 
@@ -2855,28 +2823,35 @@ EndSection
 
 SectionDevice
 	Name "Speaker DMIC Stereo"
-	Comment "Stereo Mic Tx device [now is modified - no more stereo here]"
+	Comment "Stereo Mic Tx device"
 
 	EnableSequence
-		'SLIM_0_TX Channels':0:One
+		'Main Mic Delay':1:4
+		'SLIM_0_TX Channels':0:Two
+		'SLIM TX8 MUX':0:DEC3
+		'DEC3 MUX':0:ADC4
+		'ADC4 Volume':2:91.7%
+		'DEC3 Volume':2:67.7%
 		'SLIM TX7 MUX':0:DEC4
 		'DEC4 MUX':0:ADC3
 		'ADC3 Volume':2:91.7%
-		'DEC4 Volume':2:85%
+		'DEC4 Volume':2:67.7%
 		'MICBIAS1 CAPLESS Switch':1:1
-		'TX7 HPF cut off':0:MIN_3DB_150Hz
+		'MICBIAS3 CAPLESS Switch':1:1
 	EndSequence
 
 	DisableSequence
 		'SLIM TX7 MUX':0:ZERO
+		'DEC3 MUX':0:ZERO
+		'ADC4 Volume':1:0
+		'SLIM TX8 MUX':0:ZERO
 		'DEC4 MUX':0:ZERO
 		'ADC3 Volume':1:0
-		'DEC4 Volume':1:85
 		'MICBIAS1 CAPLESS Switch':1:0
-		'TX7 HPF cut off':0:MIN_3DB_4Hz
+		'MICBIAS3 CAPLESS Switch':1:0
 	EndSequence
 
-    ACDBID	54:2
+    ACDBID	56:2
 	
 EndSection
 
@@ -2929,8 +2904,6 @@ SectionDevice
         'HPHR Volume':1:100
         'RX1 Digital Volume':2:67.7%
         'RX2 Digital Volume':2:67.7%
-        'Internal Route Config':1:6
-        'ES325 RX2 Enable':1:1
     EndSequence
 
     DisableSequence
@@ -2944,8 +2917,6 @@ SectionDevice
         'HPHR Volume':1:0
         'RX1 Digital Volume':1:0
         'RX2 Digital Volume':1:0
-        'Internal Route Config':1:6
-        'ES325 RX2 Enable':1:0
     EndSequence
 
     ACDBID  102:1
@@ -2958,21 +2929,16 @@ SectionDevice
 
     EnableSequence
         'SLIM_0_TX Channels':0:One
-        'ES325-AP Tx Channels':0:One
         'SLIM TX7 MUX':0:DEC5
         'DEC5 MUX':0:ADC2
         'ADC2 Volume':1:100
         'DEC5 Volume':2:67.7%
-        'Internal Route Config':1:12
-        'ES325 TX1 Enable':1:1
     EndSequence
 
     DisableSequence
         'SLIM TX7 MUX':0:ZERO
         'DEC5 MUX':0:ZERO
         'ADC2 Volume':1:0
-        'Internal Route Config':1:6
-        'ES325 TX1 Enable':1:0
     EndSequence
 
     ACDBID  101:2
@@ -2995,8 +2961,6 @@ SectionDevice
         'HPHR Volume':1:100
         'RX1 Digital Volume':2:67.7%
         'RX2 Digital Volume':2:67.7%
-        'Internal Route Config':1:6
-        'ES325 RX2 Enable':1:1
     EndSequence
 
     DisableSequence
@@ -3010,8 +2974,6 @@ SectionDevice
         'HPHR Volume':1:0
         'RX1 Digital Volume':1:0
         'RX2 Digital Volume':1:0
-        'Internal Route Config':1:6
-        'ES325 RX2 Enable':1:0
     EndSequence
 
     ACDBID  102:1
@@ -3024,21 +2986,16 @@ SectionDevice
 
     EnableSequence
         'SLIM_0_TX Channels':0:One
-        'ES325-AP Tx Channels':0:One
         'SLIM TX7 MUX':0:DEC5
         'DEC5 MUX':0:ADC2
         'ADC2 Volume':1:100
         'DEC5 Volume':2:67.7%
-        'Internal Route Config':1:0
-        'ES325 TX1 Enable':1:1
     EndSequence
 
     DisableSequence
         'SLIM TX7 MUX':0:ZERO
         'DEC5 MUX':0:ZERO
         'ADC2 Volume':1:0
-        'Internal Route Config':1:6
-        'ES325 TX1 Enable':1:0
     EndSequence
 
     ACDBID  101:2
