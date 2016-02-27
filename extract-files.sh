@@ -47,7 +47,7 @@ else
 fi
 
 BLOBLOC=$DEVICE
-if [ "$DEVICE" == "jflteatt" ] || [ "$DEVICE" == "jfltecan" ] || [ "$DEVICE" == "jfltetmo" ] || [ "$DEVICE" == "jfltexx" ] || [ "$DEVICE" == "jfvelte" ]; then
+if [ "$DEVICE" == "jfvelte" ]; then
     BLOBLOC=jf-gsm-common
 fi
 
