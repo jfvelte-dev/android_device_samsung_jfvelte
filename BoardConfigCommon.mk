@@ -136,6 +136,9 @@ BOARD_RIL_CLASS := ../../../$(COMMON_PATH)/ril
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
 
+# Disable journaling on system.img to save space.
+BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
+
 # Wifi module
 BOARD_HAS_QCOM_WLAN              := true
 TARGET_USES_WCNSS_CTRL           := true
