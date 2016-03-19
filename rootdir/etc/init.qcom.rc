@@ -471,15 +471,13 @@ service wlandutservice /system/bin/wlandutservice
     group wifi net_raw net_admin system inet
     disabled
     oneshot
-
-service macloader /system/bin/macloader
-    class main
-    oneshot
-
-on property:init.svc.macloader=stopped
-    chown system root /data/.rev
-    chmod 0664 /data/.rev
 # end of wifi
+
+#sensorhubservice start
+    service sensorhubservice /system/bin/sensorhubservice
+    class main
+    user system
+    group input
 
 on property:crypto.driver.load=1
      insmod /system/lib/modules/qce.ko
