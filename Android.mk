@@ -55,11 +55,6 @@ FIRMWARE_IMAGES := \
     tzapps.b00 tzapps.b01 tzapps.b02 tzapps.b03 tzapps.mdt \
     keymaste.b00 keymaste.b01 keymaste.b02 keymaste.b03 keymaste.mdt \
     mc_v2.b00 mc_v2.b01 mc_v2.b02 mc_v2.b03 mc_v2.mdt \
-    skmm_ta.b00 skmm_ta.b01 skmm_ta.b02 skmm_ta.b03 skmm_ta.mdt \
-    tima_atn.b00 tima_atn.b01 tima_atn.b02 tima_atn.b03 tima_atn.mdt \
-    tima_key.b00 tima_key.b01 tima_key.b02 tima_key.b03 tima_key.mdt \
-    tima_lkm.b00 tima_lkm.b01 tima_lkm.b02 tima_lkm.b03 tima_lkm.mdt \
-    tima_pkm.b00 tima_pkm.b01 tima_pkm.b02 tima_pkm.b03 tima_pkm.mdt \
     wcnss.b00 wcnss.b01 wcnss.b02 wcnss.b04 wcnss.b05 wcnss.b06 wcnss.mdt \
     vidc.b00 vidc.b01 vidc.b02 vidc.b03 vidc.mdt
 
