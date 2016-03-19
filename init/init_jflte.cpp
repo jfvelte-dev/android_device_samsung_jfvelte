@@ -60,12 +60,14 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.build.description", "jfveltexx-user 5.0.1 LRX22C I9515XXU1BOJ3 release-keys");
         property_set("ro.product.model", "GT-I9515");
         property_set("ro.product.device", "jfvelte");
+        property_set("ro.product.name", "jfveltexx");
     } else if (strstr(bootloader, "I9515L")) {
         /* jfvelteub  - GT-i9515L */
         property_set("ro.build.fingerprint", "samsung/jfvelteub/jfvelte:5.0.1/LRX22C/I9515LUBU1BOJ1:user/release-keys");
         property_set("ro.build.description", "jfvelteub-user 5.0.1 LRX22C I9515LUBU1BOJ1 release-keys");
         property_set("ro.product.model", "GT-I9515L");
         property_set("ro.product.device", "jfvelte");
+        property_set("ro.product.name", "jfvelteub");
     }
 
     strlcpy(devicename, device, sizeof(devicename));
