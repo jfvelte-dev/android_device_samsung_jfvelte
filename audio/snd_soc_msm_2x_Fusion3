@@ -1983,7 +1983,7 @@ SectionDevice
 		'RX1 MIX1 INP2':0:RX6
 		'EAR PA Gain':0:POS_6_DB
 		'DAC1 Switch':1:1
-		'RX1 Digital Volume':2:67.7%
+		'RX1 Digital Volume':2:71%
 	EndSequence
 
 	DisableSequence
@@ -2788,14 +2788,14 @@ SectionDevice
 
 	EnableSequence
 		'SLIM_0_TX Channels':0:Two
-		'SLIM TX7 MUX':0:DEC3
-		'DEC4 MUX':0:ADC3
-		'ADC3 Volume':1:100
-		'DEC4 Volume':2:67.7%
-		'SLIM TX8 MUX':0:DEC4
+		'SLIM TX7 MUX':0:DEC2
 		'DEC3 MUX':0:ADC4
 		'ADC4 Volume':1:100
 		'DEC3 Volume':2:67.7%
+		'SLIM TX8 MUX':0:DEC3
+		'DEC2 MUX':0:ADC5
+		'ADC5 Volume':1:100
+		'DEC2 Volume':2:67.7%
 		'MICBIAS3 CAPLESS Switch':1:1
 		'TX3 HPF cut off':0:MIN_3DB_150Hz
 		'TX4 HPF cut off':0:MIN_3DB_150Hz
@@ -2803,14 +2803,14 @@ SectionDevice
 	EndSequence
 
 	DisableSequence
-		'SLIM TX7 MUX':0:ZERO
-		'DEC4 MUX':0:ZERO
-		'ADC3 Volume':1:0
-		'DEC4 Volume':1:0
-		'SLIM TX8 MUX':0:ZERO
-		'DEC3 MUX':0:ZERO
-		'DEC3 Volume':1:0
-		'ADC4 Volume':1:0
+        'SLIM TX7 MUX':0:ZERO
+        'DEC3 MUX':0:ZERO
+        'DEC3 Volume':1:0
+        'ADC4 Volume':1:0
+        'SLIM TX8 MUX':0:ZERO
+        'DEC2 MUX':0:ZERO
+        'DEC2 Volume':1:0
+        'ADC5 Volume':1:0
 		'MICBIAS3 CAPLESS Switch':1:0
 		'TX3 HPF cut off':0:MIN_3DB_4Hz
 		'TX4 HPF cut off':0:MIN_3DB_4Hz
@@ -2831,13 +2831,16 @@ SectionDevice
 		'SLIM TX8 MUX':0:DEC3
 		'DEC3 MUX':0:ADC4
 		'ADC4 Volume':2:91.7%
-		'DEC3 Volume':2:67.7%
+		'DEC3 Volume':2:84%
 		'SLIM TX7 MUX':0:DEC4
 		'DEC4 MUX':0:ADC3
 		'ADC3 Volume':2:91.7%
-		'DEC4 Volume':2:67.7%
+		'DEC4 Volume':2:84%
 		'MICBIAS1 CAPLESS Switch':1:1
 		'MICBIAS3 CAPLESS Switch':1:1
+		'TX3 HPF cut off':0:MIN_3DB_150Hz
+		'TX4 HPF cut off':0:MIN_3DB_150Hz
+		'TX5 HPF cut off':0:MIN_3DB_150Hz
 	EndSequence
 
 	DisableSequence
@@ -2849,6 +2852,9 @@ SectionDevice
 		'ADC3 Volume':1:0
 		'MICBIAS1 CAPLESS Switch':1:0
 		'MICBIAS3 CAPLESS Switch':1:0
+		'TX3 HPF cut off':0:MIN_3DB_4Hz
+		'TX4 HPF cut off':0:MIN_3DB_4Hz
+		'TX5 HPF cut off':0:MIN_3DB_4Hz
 	EndSequence
 
     ACDBID	56:2
