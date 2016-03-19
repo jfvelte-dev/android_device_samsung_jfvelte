@@ -79,6 +79,13 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     libaudio-resampler
 
+# TinyAlsa utils
+PRODUCT_PACKAGES += \
+    tinyplay \
+    tinycap \
+    tinymix \
+    tinypcminfo
+
 # ANT+
 PRODUCT_PACKAGES += \
     AntHalService \
