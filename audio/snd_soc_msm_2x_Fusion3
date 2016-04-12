@@ -2649,8 +2649,11 @@ SectionDevice
         'SLIM TX7 MUX':0:DEC3
         'DEC3 MUX':0:ADC4
         'ADC4 Volume':1:100
-        'DEC3 Volume':2:67.7%
+        'DEC3 Volume':2:67.7
         'MICBIAS3 CAPLESS Switch':1:1
+        'TX3 HPF cut off':0:MIN_3DB_150Hz
+        'TX4 HPF cut off':0:MIN_3DB_150Hz
+        'TX5 HPF cut off':0:MIN_3DB_150Hz
     EndSequence
 
     DisableSequence
@@ -2658,9 +2661,12 @@ SectionDevice
         'DEC3 MUX':0:ZERO
         'ADC4 Volume':1:0
         'MICBIAS3 CAPLESS Switch':1:0
+        'TX3 HPF cut off':0:MIN_3DB_4Hz
+        'TX4 HPF cut off':0:MIN_3DB_4Hz
+        'TX5 HPF cut off':0:MIN_3DB_4Hz
     EndSequence
 
-    ACDBID  11:2
+    ACDBID  4:2
 
 EndSection
 
@@ -2803,14 +2809,14 @@ SectionDevice
 	EndSequence
 
 	DisableSequence
-        'SLIM TX7 MUX':0:ZERO
-        'DEC3 MUX':0:ZERO
-        'DEC3 Volume':1:0
-        'ADC4 Volume':1:0
-        'SLIM TX8 MUX':0:ZERO
-        'DEC2 MUX':0:ZERO
-        'DEC2 Volume':1:0
-        'ADC5 Volume':1:0
+		'SLIM TX7 MUX':0:ZERO
+		'DEC3 MUX':0:ZERO
+		'DEC3 Volume':1:0
+		'ADC4 Volume':1:0
+		'SLIM TX8 MUX':0:ZERO
+		'DEC2 MUX':0:ZERO
+		'DEC2 Volume':1:0
+		'ADC5 Volume':1:0
 		'MICBIAS3 CAPLESS Switch':1:0
 		'TX3 HPF cut off':0:MIN_3DB_4Hz
 		'TX4 HPF cut off':0:MIN_3DB_4Hz
@@ -2826,17 +2832,15 @@ SectionDevice
 	Comment "Stereo Mic Tx device"
 
 	EnableSequence
-		'Main Mic Delay':1:4
 		'SLIM_0_TX Channels':0:Two
 		'SLIM TX8 MUX':0:DEC3
 		'DEC3 MUX':0:ADC4
-		'ADC4 Volume':2:91.7%
-		'DEC3 Volume':2:84%
+		'ADC4 Volume':2:100
+		'DEC3 Volume':2:70
 		'SLIM TX7 MUX':0:DEC4
 		'DEC4 MUX':0:ADC3
-		'ADC3 Volume':2:91.7%
-		'DEC4 Volume':2:84%
-		'MICBIAS1 CAPLESS Switch':1:1
+		'ADC3 Volume':2:100
+		'DEC4 Volume':2:70
 		'MICBIAS3 CAPLESS Switch':1:1
 		'TX3 HPF cut off':0:MIN_3DB_150Hz
 		'TX4 HPF cut off':0:MIN_3DB_150Hz
@@ -2850,14 +2854,13 @@ SectionDevice
 		'SLIM TX8 MUX':0:ZERO
 		'DEC4 MUX':0:ZERO
 		'ADC3 Volume':1:0
-		'MICBIAS1 CAPLESS Switch':1:0
 		'MICBIAS3 CAPLESS Switch':1:0
 		'TX3 HPF cut off':0:MIN_3DB_4Hz
 		'TX4 HPF cut off':0:MIN_3DB_4Hz
 		'TX5 HPF cut off':0:MIN_3DB_4Hz
 	EndSequence
 
-    ACDBID	56:2
+    ACDBID	11:2
 	
 EndSection
 
@@ -2890,7 +2893,7 @@ SectionDevice
         'MICBIAS3 CAPLESS Switch':1:0
     EndSequence
 
-    ACDBID  56:2
+    ACDBID  11:2
 
 EndSection
 
