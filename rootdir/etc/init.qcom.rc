@@ -298,6 +298,7 @@ on property:bluetooth.dun.status=stopped
     stop bt-dun
 
 on property:vold.decrypt=trigger_restart_framework
+    start wcnss-service
     start config_bluetooth
 
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
@@ -317,6 +318,12 @@ service rmt_storage /system/bin/rmt_storage
 
 on property:ro.boot.emmc=true
     start rmt_storage
+
+service wcnss-service /system/bin/wcnss_service
+    class main
+    user system
+    group system wifi qcom_diag radio
+    oneshot
 
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core

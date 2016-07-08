@@ -66,7 +66,7 @@ BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 BOARD_HAVE_BLUETOOTH      := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT     := true
-QCOM_BT_USE_SMD_TTY       := true
+# QCOM_BT_USE_SMD_TTY       := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
 
 # Camera
@@ -123,8 +123,8 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # Vendor Init
 TARGET_UNIFIED_DEVICE := true
-TARGET_INIT_VENDOR_LIB := libinit_msm
-TARGET_LIBINIT_DEFINES_FILE := device/samsung/jfvelte/init/init_jflte.cpp
+TARGET_INIT_VENDOR_LIB := libinit_jfvelte
+TARGET_RECOVERY_DEVICE_MODULES := libinit_jfvelte
 
 # RIL
 BOARD_RIL_CLASS := ../../../$(COMMON_PATH)/ril

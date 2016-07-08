@@ -208,6 +208,7 @@ on post-fs-data
     chown system radio /sys/class/sensors/ssp_sensor/ori_poll_delay
     chown system radio /sys/class/sensors/ssp_sensor/mag_poll_delay
     chown system radio /sys/class/sensors/ssp_sensor/temp_humi_poll_delay
+    chown system radio /sys/class/sensors/ssp_sensor/ssp_flush
 
     # Gesture_sensor
     chown system radio /sys/class/sensors/gesture_sensor/ir_current
@@ -310,12 +311,6 @@ service time_daemon /system/bin/time_daemon
     class late_start
     user root
     group root
-
-service wcnss-service /system/bin/wcnss_service
-    class late_start
-    user system
-    group system wifi qcom_diag radio
-    oneshot
 	
 # insthk
 service insthk /system/bin/insthk
