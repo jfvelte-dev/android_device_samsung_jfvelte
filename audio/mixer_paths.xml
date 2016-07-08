@@ -9,11 +9,11 @@
     <ctl name="AFE_PCM_RX Audio Mixer MultiMedia5" value="0" />
     <ctl name="AFE_PCM_RX Port Mixer SLIM_1_TX" value="0" />
     <ctl name="AFE_PCM_RX_Voice Mixer Voice Stub" value="0" />
-    <ctl name="AUXPCM_RX Port Mixer SLIM_1_TX" value="0" />
-    <ctl name="AUX_PCM_RX Audio Mixer MultiMedia1" value="0" />
-    <ctl name="AUX_PCM_RX Audio Mixer MultiMedia5" value="0" />
-    <ctl name="AUX_PCM_RX_Voice Mixer Voice Stub" value="0" />
-    <ctl name="AUX_PCM_RX_Voice Mixer Voip" value="0" />
+    <ctl name="INTERNAL_BT_SCO_RX Port Mixer SLIM_1_TX" value="0" />
+    <ctl name="INTERNAL_BT_SCO_RX Audio Mixer MultiMedia1" value="0" />
+    <ctl name="INTERNAL_BT_SCO_RX Audio Mixer MultiMedia5" value="0" />
+    <ctl name="INTERNAL_BT_SCO_RX_Voice Mixer Voice Stub" value="0" />
+    <ctl name="INTERNAL_BT_SCO_RX_Voice Mixer Voip" value="0" />
     <ctl name="COMP1 Switch" value="0" />
     <ctl name="DAC1 Switch" value="0" />
     <ctl name="DAC3 MUX" value="ZERO" />
@@ -39,7 +39,7 @@
     <ctl name="MICBIAS3 CAPLESS Switch" value="0" />
     <ctl name="MICBIAS4 CAPLESS Switch" value="0" />
     <ctl name="MultiMedia1 Mixer AFE_PCM_TX" value="0" />
-    <ctl name="MultiMedia1 Mixer AUX_PCM_UL_TX" value="0" />
+    <ctl name="MultiMedia1 Mixer INTERNAL_BT_SCO_TX" value="0" />
     <ctl name="MultiMedia1 Mixer SLIM_0_TX" value="0" />
     <ctl name="MultiMedia1 Mixer VOC_REC_DL" value="0" />
     <ctl name="MultiMedia1 Mixer VOC_REC_UL" value="0" />
@@ -64,9 +64,9 @@
     <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia5" value="0" />
     <ctl name="SLIMBUS_1_RX Mixer Voice Stub" value="0" />
     <ctl name="SLIMBUS_1_RX Port Mixer AFE_PCM_TX" value="0" />
-    <ctl name="SLIMBUS_1_RX Port Mixer AUX_PCM_UL_TX" value="0" />
+    <ctl name="SLIMBUS_1_RX Port Mixer INTERNAL_BT_SCO_TX" value="0" />
     <ctl name="SLIMBUS_3_RX Port Mixer AFE_PCM_RX" value="0" />
-    <ctl name="SLIMBUS_3_RX Port Mixer AUX_PCM_DL_RX" value="0" />
+    <ctl name="SLIMBUS_3_RX Port Mixer INTERNAL_BT_SCO_RX" value="0" />
     <ctl name="SLIMBUS_3_RX_Voice Mixer Voice Stub" value="0" />
     <ctl name="SLIMBUS_DL_HL Switch" value="0" />
     <ctl name="SLIM_0_RX Channels" value="Two" />
@@ -84,12 +84,12 @@
     <ctl name="TX8 HPF cut off" value="MIN_3DB_4Hz" />
     <ctl name="VEQ Enable" value="1" />
     <ctl name="Voice Stub Tx Mixer AFE_PCM_TX" value="0" />
-    <ctl name="Voice Stub Tx Mixer AUX_PCM_UL_TX" value="0" />
+    <ctl name="Voice Stub Tx Mixer INTERNAL_BT_SCO_TX" value="0" />
     <ctl name="Voice Stub Tx Mixer SLIM_1_TX" value="0" />
     <ctl name="Voice Stub Tx Mixer SLIM_3_TX" value="0" />
     <ctl name="Voice Stub Tx Mixer STUB_TX_HL" value="0" />
     <ctl name="Voice Stub Tx Mixer STUB_1_TX_HL" value="0" />
-    <ctl name="Voip_Tx Mixer AUX_PCM_TX_Voip" value="0" />
+    <ctl name="Voip_Tx Mixer INTERNAL_BT_SCO_TX_Voip" value="0" />
     <ctl name="Voip_Tx Mixer SLIM_0_TX_Voip" value="0" />
 
     <!-- echo reference -->
@@ -111,7 +111,7 @@
     </path>
 
     <path name="deep-buffer-playback bt-sco">
-        <ctl name="AUX_PCM_RX Audio Mixer MultiMedia1" value="1" />
+        <ctl name="INTERNAL_BT_SCO_RX Audio Mixer MultiMedia1" value="1" />
     </path>
 
     <path name="deep-buffer-playback afe-proxy">
@@ -141,7 +141,7 @@
     </path>
 
     <path name="low-latency-playback bt-sco">
-        <ctl name="AUX_PCM_RX Audio Mixer MultiMedia5" value="1" />
+        <ctl name="INTERNAL_BT_SCO_RX Audio Mixer MultiMedia5" value="1" />
     </path>
 
     <path name="low-latency-playback afe-proxy">
@@ -170,7 +170,7 @@
     </path>
 
     <path name="audio-record bt-sco">
-        <ctl name="MultiMedia1 Mixer AUX_PCM_UL_TX" value="1" />
+        <ctl name="MultiMedia1 Mixer INTERNAL_BT_SCO_TX" value="1" />
     </path>
 
     <path name="audio-record usb-headset-mic">
@@ -197,15 +197,15 @@
     </path>
 
     <path name="voice-call bt-sco">
-        <ctl name="Voice Stub Tx Mixer AUX_PCM_UL_TX" value="1" />
+        <ctl name="Voice Stub Tx Mixer INTERNAL_BT_SCO_TX" value="1" />
         <ctl name="SLIMBUS_1_RX Mixer Voice Stub" value="1" />
         <ctl name="Voice Stub Tx Mixer SLIM_1_TX" value="1" />
-        <ctl name="AUX_PCM_RX_Voice Mixer Voice Stub" value="1" />
-        <ctl name="SLIMBUS_1_RX Port Mixer AUX_PCM_UL_TX" value="1" />
-        <ctl name="AUXPCM_RX Port Mixer SLIM_1_TX" value="1" />
+        <ctl name="INTERNAL_BT_SCO_RX_Voice Mixer Voice Stub" value="1" />
+        <ctl name="SLIMBUS_1_RX Port Mixer INTERNAL_BT_SCO_TX" value="1" />
+        <ctl name="INTERNAL_BT_SCO_RX Port Mixer SLIM_1_TX" value="1" />
         <ctl name="SLIM_3_RX Channels" value="One" />
         <ctl name="SLIMBUS_3_RX_Voice Mixer Voice Stub" value="1" />
-        <ctl name="SLIMBUS_3_RX Port Mixer AUX_PCM_DL_RX" value="1" />
+        <ctl name="SLIMBUS_3_RX Port Mixer INTERNAL_BT_SCO_RX" value="1" />
     </path>
 
     <path name="voip-call">
@@ -214,8 +214,8 @@
     </path>
 
     <path name="voip-call bt-sco">
-        <ctl name="AUX_PCM_RX_Voice Mixer Voip" value="1" />
-        <ctl name="Voip_Tx Mixer AUX_PCM_TX_Voip" value="1" />
+        <ctl name="INTERNAL_BT_SCO_RX_Voice Mixer Voip" value="1" />
+        <ctl name="Voip_Tx Mixer INTERNAL_BT_SCO_TX_Voip" value="1" />
     </path>
 
     <path name="voice-call afe-proxy">
