@@ -48,8 +48,8 @@ TARGET_KERNEL_SOURCE := kernel/samsung/jf
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
 
 # Audio
-BOARD_USES_ALSA_AUDIO := true
 BOARD_HAVE_SAMSUNG_CSDCLIENT := true
+BOARD_USES_ALSA_AUDIO := true
 USE_CUSTOM_AUDIO_POLICY := 1
 
 # Enable dex-preopt
