@@ -182,6 +182,9 @@
 
     <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
     <bool translatable="false" name="config_wifi_dual_band_support">true</bool>
+    
+    <!-- Boolean indicating whether the wifi chipset has background scan support -->
+    <bool translatable="false" name="config_wifi_background_scan_support">true</bool>
 
     <!-- The VoiceMail default value is displayed to my own number if it is true -->
     <bool name="config_telephony_use_own_number_for_voicemail">true</bool>
@@ -345,13 +348,13 @@
          if the sensor HAL correctly handles the proximity sensor as a wake-up source.
          Otherwise, the device may fail to wake out of suspend reliably.
          The default is false. -->
-    <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
+    <!-- bool name="config_suspendWhenScreenOffDueToProximity">true</bool -->
 
     <!-- Boolean indicating if current platform supports bluetooth wide band
          speech -->
-    <bool name="config_bluetooth_wide_band_speech">false</bool>
+    <!-- bool name="config_bluetooth_wide_band_speech">false</bool -->
 
     <!-- Boolean indicating if current platform supports BLE peripheral mode -->
-    <bool name="config_bluetooth_le_peripheral_mode_supported">true</bool>
+    <!-- bool name="config_bluetooth_le_peripheral_mode_supported">true</bool -->
 
 </resources>
