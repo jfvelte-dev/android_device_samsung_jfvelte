@@ -206,7 +206,7 @@ PRODUCT_PACKAGES += \
 
 # SPN override
 PRODUCT_COPY_FILES += \
-    device/samsung/jf-common/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
+    device/samsung/jfvelte/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
 
 # Wifi
 PRODUCT_PACKAGES += \
