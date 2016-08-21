@@ -15,9 +15,6 @@
  */
 #define LOG_TAG "ConsumerIrHal"
 
-#include <stdlib.h>
-#include <malloc.h>
-#include <stdbool.h>
 #include <errno.h>
 #include <string.h>
 #include <unistd.h>
@@ -39,62 +36,18 @@ static const consumerir_freq_range_t consumerir_freqs[] = {
     {.min = 56000, .max = 56000},
 };
 
-static bool
-try_append_number(char *buffer, int *len, int size, int number)
-{
-    int stored;
-
-    stored = snprintf(&buffer[*len], size - *len, "%d,", number);
-
-    if (stored < 0 || stored >= size - *len) {
-        return false;
-    }
-
-    *len += stored;
-    return true;
-}
-
-static bool
-grow_buffer(char **buffer, int *size)
-{
-    char *new_buffer;
-
-    *size *= 2;
-    if ((new_buffer = realloc(*buffer, *size)) == NULL) {
-        return false;
-    }
-    *buffer = new_buffer;
-    return true;
-}
-
-static bool
-append_number(char **buffer, int *len, int *size, int number)
-{
-    if (! try_append_number(*buffer, len, *size, number)) {
-        if (! grow_buffer(buffer, size)) return false;
-        return try_append_number(*buffer, len, *size, number);
-    } else {
-        return true;
-    }
-}
-
 int fd = 0;
 static int consumerir_transmit(UNUSED struct consumerir_device *dev,
    int carrier_freq, const int pattern[], int pattern_len)
 {
-    int buffer_len = 0;
-    int buffer_size = 128;
+    int strlen;
     int i;
-    char *buffer;
+    char buffer[1024];
 
-    if ((buffer = malloc(buffer_size)) == NULL) {
-        return -ENOMEM;
-    }
+    memset(buffer, 0, 1024);
 
     /* write the header */
-    if (! append_number(&buffer, &buffer_len, &buffer_size, carrier_freq)) {
-        goto error;
-    }
+    strlen = sprintf(buffer, "%d,", carrier_freq);
 
     /* calculate factor of conversion from microseconds to pulses */
     float factor = 1000000 / carrier_freq;
@@ -102,21 +55,14 @@ static int consumerir_transmit(UNUSED struct consumerir_device *dev,
     /* write out the timing pattern */
     for (i = 0; i < pattern_len; i++)
     {
-        if (! append_number(&buffer, &buffer_len, &buffer_size, (int) (pattern[i]/factor))) {
-            goto error;
-        }
+        strlen += sprintf(buffer + strlen, "%d,", (int) (pattern[i]/factor));
     }
 
-    buffer[buffer_len - 1] = 0;
-    write(fd, buffer, buffer_len - 1);
+    buffer[strlen - 1] = 0;
 
-    free(buffer);
+    write(fd, buffer, strlen - 1);
 
     return 0;
-
-error:
-    free(buffer);
-    return -ENOMEM;
 }
 
 static int consumerir_get_num_carrier_freqs(UNUSED struct consumerir_device *dev)
