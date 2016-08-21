@@ -55,7 +55,7 @@ USE_CUSTOM_AUDIO_POLICY := 1
 # Enable dex-preopt
 #ifeq ($(HOST_OS),linux)
 #  ifeq ($(WITH_DEXPREOPT),)
-#    WITH_DEXPREOPT := true
+WITH_DEXPREOPT := true
 #  endif
 #endif
 
