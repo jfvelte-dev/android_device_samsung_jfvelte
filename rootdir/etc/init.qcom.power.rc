@@ -134,6 +134,12 @@ on enable-low-power
     write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor ondemand
 
     write /dev/cpuctl/cpu.notify_on_migrate 1
+    
+    write /sys/kernel/fast_charge/force_fast_charge 2
+    write /sys/kernel/fast_charge/usb_charge_level 1000
+    write /sys/kernel/fast_charge/ac_charge_level  1800
+    write /sys/kernel/fast_charge/screen_on_current_limit 0
+    write /sys/kernel/fast_charge/use_mtp_during_fast_charge 1
 
 on boot
     trigger enable-low-power
