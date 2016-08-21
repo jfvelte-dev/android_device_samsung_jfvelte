@@ -141,6 +141,30 @@ on post-fs-data
     # Create directories for perfd
     mkdir /data/misc/perfd 2755 root system
     mkdir /data/system/perfd 2770 root system
+    
+    service wcnss-service /system/bin/wcnss_service
+    class late_start
+    user system
+    group system wifi qcom_diag radio
+    oneshot
+
+    service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
+    class core
+    user root
+    oneshot
+
+    service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
+    class late_start
+    user bluetooth
+    group qcom_oncrpc bluetooth net_bt_admin
+    disabled
+    oneshot
+
+on property:bluetooth.hciattach=true
+    start hciattach
+
+on property:bluetooth.hciattach=false
+    setprop bluetooth.status off
 
     setprop vold.post_fs_data_done 1
 
@@ -158,6 +182,15 @@ on boot
     chmod 0660 /proc/bluetooth/sleep/proto
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
+
+    # for BT MAC address
+    mkdir /efs/bluetooth 0775 radio system
+    # if already exist
+    chown radio system /efs/bluetooth
+    chmod 0775 /efs/bluetooth
+
+    chown radio radio /efs/bluetooth/bt_addr
+    chmod 0644 /efs/bluetooth/bt_addr
 
     # Bluetooth LPM
     chown bluetooth net_bt_stack /proc/bluetooth/sleep/lpm
@@ -450,12 +483,9 @@ service netmgrd /system/bin/netmgrd
 on property:ro.data.large_tcp_window_size=true
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
 
-service p2p_supplicant /system/bin/wpa_supplicant \
+service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
-    -I/system/etc/wifi/wpa_supplicant_overlay.conf -N \
-    -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
-    -I/system/etc/wifi/p2p_supplicant_overlay.conf \
-    -puse_p2p_group_interface=1 -puse_multi_chan_concurrent=1 \
+    -I/system/etc/wifi/wpa_supplicant_overlay.conf \
     -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
@@ -466,8 +496,13 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-service wpa_supplicant /system/bin/wpa_supplicant -g@android:wpa_wlan0 \
-    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -e/data/misc/wifi/entropy.bin
+service p2p_supplicant /system/bin/wpa_supplicant \
+    -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
+    -I/system/etc/wifi/p2p_supplicant_overlay.conf -N \
+    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
+    -I/system/etc/wifi/wpa_supplicant_overlay.conf \
+    -puse_p2p_group_interface=1 \
+    -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
     #   user wifi
@@ -477,33 +512,33 @@ service wpa_supplicant /system/bin/wpa_supplicant -g@android:wpa_wlan0 \
     disabled
     oneshot
 
-service dhcpcd_wlan0 /system/bin/dhcpcd -ABKLG
-    class late_start
+service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
+    class main
     disabled
     oneshot
 
-service dhcpcd_p2p /system/bin/dhcpcd -ABKLG
-    class late_start
+service dhcpcd_p2p /system/bin/dhcpcd -aABKL
+    class main
     disabled
     oneshot
 
 service iprenew_wlan0 /system/bin/dhcpcd -n
-    class late_start
+    class main
     disabled
     oneshot
 
 service iprenew_p2p /system/bin/dhcpcd -n
-    class late_start
+    class main
     disabled
     oneshot
 
 service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
-    class late_start
+    class main
     disabled
     oneshot
 
 service iprenew_bt-pan /system/bin/dhcpcd -n
-    class late_start
+    class main
     disabled
     oneshot
 
