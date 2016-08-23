@@ -30,7 +30,6 @@ TARGET_OTA_ASSERT_DEVICE := jfvelte,jfveltexx,i9515,I9515,GT-I9515,GT-i9515,gt-i
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8960
-USE_CLANG_PLATFORM_BUILD := true
 
 # Architecture
 TARGET_CPU_VARIANT := krait
