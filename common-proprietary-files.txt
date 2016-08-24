@@ -137,7 +137,7 @@ lib/libthermalclient.so
 -app/TimeService/TimeService.apk
 bin/time_daemon
 lib/libTimeService.so
-vendor/lib/libtime_genoff.so
+-vendor/lib/libtime_genoff.so
 
 # Widevine
 vendor/lib/drm/libdrmwvmplugin.so|3bee766222895f524421eb996ca6a08bcf95f19f
