@@ -1,5 +1,6 @@
 allow system_server self:process execmem;
 
+allow system_server efs_file:file rw_file_perms;
 allow system_server efs_file:dir search;
 allow system_server efs_file:file r_file_perms;
 allow system_server keypad_dev:file rw_file_perms;
@@ -11,3 +12,4 @@ allow system_server time_daemon:unix_stream_socket connectto;
 allow system_server vibe_dev:file rw_file_perms;
 allow system_server wifi_efs_file:file r_file_perms;
 allow system_server sensorhub_dev:chr_file r_file_perms;
+allow system_server wifi_efs_file:dir search;
