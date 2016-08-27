@@ -62,6 +62,9 @@ WITH_DEXPREOPT := true
 # ANT
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
+# Boot animation
+TARGET_BOOTANIMATION_HALF_RES := true
+
 # Bluetooth
 BOARD_HAVE_BLUETOOTH      := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
