@@ -56,7 +56,7 @@ BOARD_USES_ALSA_AUDIO := true
 # Enable dex-preopt
 #ifeq ($(HOST_OS),linux)
 #  ifeq ($(WITH_DEXPREOPT),)
-WITH_DEXPREOPT := true
+#WITH_DEXPREOPT := true
 #  endif
 #endif
 
