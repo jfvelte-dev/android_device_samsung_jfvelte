@@ -50,7 +50,7 @@ TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androidkernel-
 # Audio
 BOARD_HAVE_SAMSUNG_CSDCLIENT := true
 BOARD_USES_ALSA_AUDIO := true
-#USE_CUSTOM_AUDIO_POLICY := 1
+USE_CUSTOM_AUDIO_POLICY := 1
 
 # Enable dex-preopt
 #ifeq ($(HOST_OS),linux)
@@ -136,7 +136,7 @@ USE_DEVICE_SPECIFIC_DATASERVICES := true
 
 # SELinux
 #include device/qcom/sepolicy/sepolicy.mk
-#BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
 
 # Wifi module
 BOARD_HAS_QCOM_WLAN              := true
