@@ -30,7 +30,7 @@ import init.qcom.usb.rc
 
 on early-init
     symlink /data/tombstones /tombstones
-
+    mount debugfs debugfs /sys/kernel/debug
     mkdir /firmware 0771 system system
     mkdir /firmware-mdm 0771 system system
 
@@ -141,7 +141,7 @@ on post-fs-data
     mkdir /data/system/perfd 2770 root system
     
     service wcnss-service /system/bin/wcnss_service
-    class late_start
+    class main
     user system
     group system wifi qcom_diag radio
     oneshot

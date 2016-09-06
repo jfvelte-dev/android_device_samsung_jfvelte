@@ -206,6 +206,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libstlport
 
+# Telephony-ext
+PRODUCT_PACKAGES += telephony-ext
+PRODUCT_BOOT_JARS += telephony-ext
+
 # Thermal
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine-8064ab.conf:system/etc/thermal-engine-8064ab.conf
@@ -240,12 +244,18 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/bluetooth/btnvtool:system/bin/btnvtool \
 	$(LOCAL_PATH)/bluetooth/hci_qcomm_init:system/bin/hci_qcomm_init \
 	$(LOCAL_PATH)/bluetooth/libbtnv.so:system/lib/libbtnv.so
-	
+
 # SoftAP
 PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
     libqsap_sdk
 
+# For userdebug builds
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.secure=0 \
+    ro.adb.secure=0 \
+    ro.debuggable=1 \
+    persist.service.adb.enable=1
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
