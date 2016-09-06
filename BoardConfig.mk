@@ -136,7 +136,7 @@ USE_DEVICE_SPECIFIC_DATASERVICES := true
 
 # SELinux
 #include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
+#BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
 
 # Wifi module
 BOARD_HAS_QCOM_WLAN              := true
