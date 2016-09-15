@@ -117,9 +117,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     SamsungDoze
 
+# Gello
+# PRODUCT_PACKAGES += \
+#     Gello
+
+# GPS
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/gps.conf:/system/etc/gps.conf \
-    $(LOCAL_PATH)/configs/sap.conf:/system/etc/sap.conf
+    $(LOCAL_PATH)/gps/flp.conf:/system/etc/flp.conf \
+    $(LOCAL_PATH)/gps/gps.conf:/system/etc/gps.conf \
+    $(LOCAL_PATH)/gps/sap.conf:/system/etc/sap.conf
 
 # IPv6 tethering
 PRODUCT_PACKAGES += \
