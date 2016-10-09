@@ -59,3 +59,4 @@ persist.timed.enable=true
 
 # WiFi
 wifi.interface=wlan0
+ro.disableWifiApFirmwareReload=true
