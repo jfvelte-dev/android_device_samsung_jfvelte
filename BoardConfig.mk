@@ -38,7 +38,8 @@ TARGET_CPU_VARIANT := krait
 TARGET_BOOTLOADER_BOARD_NAME := MSM8960
 
 # Kernel
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 zcache msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.selinux=permissive
+#BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 zcache msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 zcache msm_rtb.filter=0x3F ehci-hcd.park=3
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -69,8 +70,10 @@ BLUETOOTH_HCI_USE_MCT     := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
 
 # Camera
+TARGET_NEEDS_PLATFORM_TEXTRELS := true
 TARGET_PROVIDES_CAMERA_HAL := true
 USE_DEVICE_SPECIFIC_CAMERA := true
+TARGET_DISPLAY_INSECURE_MM_HEAP := true
 
 # Charger
 BOARD_CHARGING_CMDLINE_NAME := "androidboot.bootchg"
