@@ -351,6 +351,4 @@
     <!-- Boolean indicating if current platform supports BLE peripheral mode -->
     <!-- bool name="config_bluetooth_le_peripheral_mode_supported">true</bool -->
 
-    <!-- Component name of the combo network location provider. -->
-    <string name="config_comboNetworkLocationProvider" translatable="false">com.qualcomm.location</string>
 </resources>
