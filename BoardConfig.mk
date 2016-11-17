@@ -51,6 +51,7 @@ TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
 BOARD_HAVE_SAMSUNG_CSDCLIENT := true
 BOARD_USES_ALSA_AUDIO := true
 USE_CUSTOM_AUDIO_POLICY := 1
+AUDIO_FEATURE_ENABLED_HWDEP_CAL := true
 
 # Enable dex-preopt
 #ifeq ($(HOST_OS),linux)
