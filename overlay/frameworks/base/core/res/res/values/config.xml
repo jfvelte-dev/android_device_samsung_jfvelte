@@ -349,6 +349,6 @@
     <!-- bool name="config_bluetooth_wide_band_speech">false</bool -->
 
     <!-- Boolean indicating if current platform supports BLE peripheral mode -->
-    <!-- bool name="config_bluetooth_le_peripheral_mode_supported">true</bool -->
+    <bool name="config_bluetooth_le_peripheral_mode_supported">true</bool>
 
 </resources>
