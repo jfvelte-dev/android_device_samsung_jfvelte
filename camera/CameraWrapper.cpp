@@ -35,6 +35,9 @@
 
 using namespace android;
 
+CAMERA_PARAMETERS_EXTRA_C
+
+
 static Mutex gCameraWrapperLock;
 static camera_module_t *gVendorModule = 0;
 
