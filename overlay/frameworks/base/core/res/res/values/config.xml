@@ -332,11 +332,7 @@
     <!-- Whether the default speaker audio output path supports near-ultrasound frequencies
          (range of 18 - 21 kHz). -->
     <bool name="config_supportSpeakerNearUltrasound">false</bool>
-	
-    <!-- Older rotation sensors are not setting event.timestamp correctly. Setting to
-         true will use SystemClock.elapsedRealtimeNanos() to set timestamp. -->
-    <bool name="config_useSystemClockforRotationSensor">true</bool>
-    
+
     <!-- Indicate whether to allow the device to suspend when the screen is off
          due to the proximity sensor.  This resource should only be set to true
          if the sensor HAL correctly handles the proximity sensor as a wake-up source.
