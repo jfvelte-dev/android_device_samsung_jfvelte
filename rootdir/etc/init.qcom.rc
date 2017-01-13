@@ -386,8 +386,6 @@ on boot
 
     # RIL fast dormancy
     chown system radio /sys/class/sec/bamdmux/waketime
-    
-    setprop persist.sys.ssr.restart_level 3
 
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
