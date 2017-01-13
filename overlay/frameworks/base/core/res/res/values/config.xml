@@ -347,6 +347,8 @@
     <!-- Boolean indicating if current platform supports BLE peripheral mode -->
     <bool name="config_bluetooth_le_peripheral_mode_supported">true</bool>
 
+    <!-- Flag indicating if device supports EAP SIM, AKA, AKA' -->
+    <bool name="config_eap_sim_based_auth_supported">false</bool>
 
     <!-- Disable IpReachability monitor -->
     <bool name="config_wifi_ipreachability_monitor">false</bool>
