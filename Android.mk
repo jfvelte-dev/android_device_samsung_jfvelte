@@ -37,7 +37,8 @@ FIRMWARE_MDM_IMAGES := \
     mdm_acdb.img \
     rpm.mbn \
     sbl1.mbn \
-    sbl2.mbn
+    sbl2.mbn \
+    sbl3.mbn
 
 FIRMWARE_MDM_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(FIRMWARE_MDM_IMAGES)))
 $(FIRMWARE_MDM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)

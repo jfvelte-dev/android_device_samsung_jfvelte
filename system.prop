@@ -9,6 +9,8 @@ ro.telephony.default_network=9
 
 # ART
 dalvik.vm.dex2oat-swap=false
+ro.sys.fw.dex2oat_thread_count=4
+ro.am.reschedule_service=true
 
 # Audio
 audio.offload.disable=1
@@ -30,7 +32,8 @@ ro.qualcomm.bluetooth.pbap=true
 ro.qualcomm.bluetooth.ftp=true
 ro.qualcomm.bluetooth.map=true
 ro.qualcomm.bluetooth.nap=true
-ro.bluetooth.sap=true
+ro.bluetooth.sap=false
+ro.bluetooth.dun=false
 ro.bluetooth.request.master=true
 bluetooth.a2dp.sink.enabled=false
 qcom.bluetooth.soc=smd
@@ -45,14 +48,17 @@ ro.sf.lcd_density=480
 
 # GPS
 ro.gps.agps_provider=1
+persist.gps.qmienabled=true
 ro.qc.sdk.izat.premium_enabled=0
 ro.qc.sdk.izat.service_mask=0x0
 persist.gps.qc_nlp_in_use=0
+ro.pip.gated=0
 
 # Media
 media.stagefright.legacyencoder=true
 media.stagefright.less-secure=true
 mm.enable.smoothstreaming=true
+media.aac_51_output_enabled=true
 
 # NFC
 ro.nfc.port=I2C
@@ -80,3 +86,19 @@ persist.timed.enable=true
 
 # WiFi
 wifi.interface=wlan0
+ro.disableWifiApFirmwareReload=true
+
+# various
+ro.qc.sdk.camera.facialproc=true
+ro.qc.sdk.gestures.camera=false
+ro.qc.sdk.sensors.gestures=false
+ro.qualcomm.cabl=0
+persist.sys.camera.transform=0
+persist.sys.camera.connect=0
+persist.sys.videomode=0
+ro.hdcp2.rx=tz
+ro.secwvk=144
+ro.use_data_netmgrd=true
+persist.data.netmgrd.qos.enable=false
+ril.subscription.types=NV,RUIM
+persist.rmnet.mux=disabled
