@@ -81,6 +81,9 @@ persist.timed.enable=true
 wifi.interface=wlan0
 ro.disableWifiApFirmwareReload=true
 
+# SSR
+persist.sys.ssr.restart_level=3
+
 # various
 ro.qc.sdk.camera.facialproc=true
 ro.qc.sdk.gestures.camera=false
