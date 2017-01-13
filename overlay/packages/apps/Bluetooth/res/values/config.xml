@@ -13,8 +13,8 @@
    limitations under the License.
 -->
 <resources>
-    <bool name="profile_supported_hfpclient">true</bool>
+    <bool name="profile_supported_hfpclient">false</bool>
     <bool name="profile_supported_avrcp_controller">false</bool>
     <bool name="profile_supported_a2dp_sink">false</bool>
-    <bool name="profile_supported_hidd">true</bool>
+    <bool name="profile_supported_hidd">false</bool>
 </resources>
