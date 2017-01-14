@@ -324,7 +324,7 @@
     <!-- bool name="config_bluetooth_wide_band_speech">false</bool -->
 
     <!-- Boolean indicating if current platform supports BLE peripheral mode -->
-    <!-- bool name="config_bluetooth_le_peripheral_mode_supported">true</bool -->
+    <bool name="config_bluetooth_le_peripheral_mode_supported">true</bool>
     
     <!-- Boolean indicating whether or not wifi firmware debugging is enabled -->
     <bool translatable="false" name="config_wifi_enable_wifi_firmware_debugging">false</bool>
