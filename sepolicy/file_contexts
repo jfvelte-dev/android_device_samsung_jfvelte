@@ -10,5 +10,20 @@
 # Needed by NFC
 /dev/bcm2079x                                              u:object_r:nfc_device:s0
 
+#bt and wifi macs
 /efs/bluetooth(/.*)?		u:object_r:bluetooth_efs_file:s0
 /efs/wifi(/.*)?			u:object_r:wifi_efs_file:s0
+
+# gpu freq
+/sys/devices/platform/kgsl-3d0.0/kgsl/kgsl-3d0/gpuclk               u:object_r:sysfs_thermal:s0
+/sys/devices/platform/kgsl-3d0.0/kgsl/kgsl-3d0/max_gpuclk           u:object_r:sysfs_thermal:s0
+
+# sensors
+/efs/FactoryApp/baro_delta                              u:object_r:sensors_efs_file:s0
+/efs/gyro_cal_data                                      u:object_r:sensors_efs_file:s0
+/efs/prox_cal                                           u:object_r:sensors_efs_file:s0
+/efs/hw_offset                                          u:object_r:sensors_efs_file:s0
+
+# FactoryApp
+/efs/FactoryApp/earjack_count                             u:object_r:various_efs_file:s0
+/efs/FactoryApp/batt_cable_count                          u:object_r:various_efs_file:s0
