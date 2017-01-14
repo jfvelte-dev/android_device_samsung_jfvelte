@@ -328,6 +328,9 @@
     
     <!-- Boolean indicating whether or not wifi firmware debugging is enabled -->
     <bool translatable="false" name="config_wifi_enable_wifi_firmware_debugging">false</bool>
+ 
+    <!-- Flag indicating if device supports EAP SIM, AKA, AKA' -->
+    <bool name="config_eap_sim_based_auth_supported">false</bool>
 
     <!-- Whether to enable Hardware FLP overlay which allows Hardware FLP to be
          replaced by an app at run-time. When disabled, only the
