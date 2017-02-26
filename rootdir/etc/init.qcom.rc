@@ -142,6 +142,12 @@ on post-fs-data
     # Create directories for perfd
     mkdir /data/misc/perfd 2755 root system
     mkdir /data/system/perfd 2770 root system
+    
+    service wcnss-service /system/bin/wcnss_service
+    class main
+    user system
+    group system wifi qcom_diag radio
+    oneshot
 
     setprop vold.post_fs_data_done 1
 
@@ -386,6 +392,9 @@ on boot
 
     # RIL fast dormancy
     chown system radio /sys/class/sec/bamdmux/waketime
+    
+    # WCNSS SSR    
+    write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
 
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
@@ -501,14 +510,11 @@ on property:persist.sys.mdm.timeout_disable=1
 on property:persist.sys.ssr.restart_level=1
     write /sys/module/subsystem_restart/parameters/restart_level 1
 
+on property:persist.sys.ssr.restart_level=2
+    write /sys/module/subsystem_restart/parameters/restart_level 2
+
 on property:persist.sys.ssr.restart_level=3
     write /sys/module/subsystem_restart/parameters/restart_level 3
-
-service wcnss-service /system/bin/wcnss_service
-    class main
-    user system
-    group system wifi qcom_diag radio
-    oneshot
 
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     class late_start
