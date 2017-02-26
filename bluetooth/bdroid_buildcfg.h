@@ -19,14 +19,10 @@
 #define _BDROID_BUILDCFG_H
 
 #define BTM_DEF_LOCAL_NAME   "Samsung Galaxy S IV"
-#define BTA_DISABLE_DELAY 100 /* in milliseconds */
+#define BTA_DISABLE_DELAY 1000 /* in milliseconds */
 #define BLUETOOTH_QTI_SW TRUE
 #define BTA_HOST_INTERLEAVE_SEARCH TRUE
 #define SC_MODE_INCLUDED FALSE
-#define HCI_RAW_CMD_INCLUDED FALSE
-#define SDP_DEBUG FALSE
-#define BTSNOOP_MEM FALSE
-
 
 /* Defined if the kernel does not have support for CLOCK_BOOTTIME_ALARM */
 #define KERNEL_MISSING_CLOCK_BOOTTIME_ALARM TRUE
